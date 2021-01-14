@@ -6,10 +6,36 @@ body {
   
 }
 
+.app, .menu {
+  display: flex;
+  flex-direction:column;
+}
+
 .app {
   min-height: 100vh;
   min-width: 100vw;
   background-color: black;
   color: white;
+  align-items: center;
+  justify-content: center;
+
+  .menu {
+    .menu-item {
+      border: 1px solid white;
+      border-radius: 5px;
+      background: none;
+      
+      margin: 10px;
+      padding: 10px;
+      color: white;
+      .new-game:hover {
+        border-color: red;
+      }
+
+      
+    }
+  }
+
+  
 }
 
