@@ -1,2 +1,2 @@
-### Blackjack App
+# Blackjack
 Implementation of blackjack card game.
