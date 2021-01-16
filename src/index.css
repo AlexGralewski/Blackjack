@@ -12,7 +12,23 @@ button, input {
   padding: 20px;
 }
 
-.app, .menu, .game, .game-table, .neutral, .bet-selection, .bet-balance-information, .custom-bet {
+body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  min-height: 100vh;
+  min-width: 100vw;
+  background-color: black;
+  color: white;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.menu, .game, .game-table, .neutral, .bet-selection, .bet-balance-information, .custom-bet {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -35,23 +51,13 @@ button, input {
   color: white;
 }
 
-.app {
-  min-height: 100vh;
-  min-width: 100vw;
-  background-color: black;
-  color: white;
+.menu {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
 }
 
-.app .menu {
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.app .menu .menu-title {
+.menu .menu-title {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -65,8 +71,12 @@ button, input {
   font-size: 10rem;
 }
 
-.app .menu .menu-item {
+.menu a {
   width: 50%;
+}
+
+.menu .menu-item {
+  width: 100%;
   border: 1px solid white;
   border-radius: 5px;
   background: none;
@@ -76,11 +86,11 @@ button, input {
   color: white;
 }
 
-.app .menu .menu-item .new-game:hover {
+.menu .menu-item .new-game:hover {
   border-color: red;
 }
 
-.app .bet-selection {
+.bet-selection {
   min-width: 400px;
   -webkit-box-align: center;
       -ms-flex-align: center;
@@ -97,7 +107,7 @@ button, input {
   font-size: 30px;
 }
 
-.app .bet-selection .bet-buttons {
+.bet-selection .bet-buttons {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -108,7 +118,7 @@ button, input {
           justify-content: center;
 }
 
-.app .bet-selection .bet-buttons input {
+.bet-selection .bet-buttons input {
   width: 22%;
   margin: 2%;
   border: white solid 2px;
@@ -119,39 +129,39 @@ button, input {
   padding: 20px 10px;
 }
 
-.app .bet-selection .bet-buttons input:hover {
+.bet-selection .bet-buttons input:hover {
   background-color: white;
   color: black;
 }
 
-.app .bet-selection .custom-bet {
+.bet-selection .custom-bet {
   margin: 20px;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
 }
 
-.app .bet-selection .bet-balance-information {
+.bet-selection .bet-balance-information {
   padding: 20px;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
 }
 
-.app .bet-selection .bet-balance-information p {
+.bet-selection .bet-balance-information p {
   margin: 0;
 }
 
-.app .game {
+.game {
   font-size: 30px;
 }
 
-.app .game h1 {
+.game h1 {
   font-size: 50px;
   letter-spacing: 5px;
 }
 
-.app .game .game-table {
+.game .game-table {
   min-height: 600px;
   height: 70vh;
   min-width: 300px;
@@ -160,16 +170,16 @@ button, input {
   border-radius: 40px;
 }
 
-.app .game .game-table .dealer-side, .app .game .game-table .player-side {
+.game .game-table .dealer-side, .game .game-table .player-side {
   height: 30%;
   padding: 20px;
 }
 
-.app .game .game-table .dealer-side {
+.game .game-table .dealer-side {
   border-bottom: 2px red solid;
 }
 
-.app .game .game-table .neutral {
+.game .game-table .neutral {
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
@@ -184,38 +194,38 @@ button, input {
   padding: 0 50px;
 }
 
-.app .game .game-table .neutral p {
+.game .game-table .neutral p {
   margin: 0;
   letter-spacing: 1px;
 }
 
-.app .game .game-table .neutral .deck {
+.game .game-table .neutral .deck {
   position: relative;
 }
 
-.app .game .game-table .neutral .deck .card1 {
+.game .game-table .neutral .deck .card1 {
   position: relative;
   top: 0;
   left: 0;
 }
 
-.app .game .game-table .neutral .deck .card2 {
+.game .game-table .neutral .deck .card2 {
   position: absolute;
   top: -2px;
   left: -3px;
 }
 
-.app .game .game-table .neutral .deck .card3 {
+.game .game-table .neutral .deck .card3 {
   position: absolute;
   top: -4px;
   left: -6px;
 }
 
-.app .game .game-table .player-side {
+.game .game-table .player-side {
   border-top: 2px green solid;
 }
 
-.app .game .game-buttons {
+.game .game-buttons {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -227,7 +237,7 @@ button, input {
       flex-wrap: wrap;
 }
 
-.app .game .game-buttons input {
+.game .game-buttons input {
   margin: 15px;
   width: 25%;
   min-width: 180px;

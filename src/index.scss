@@ -12,7 +12,21 @@ button, input {
   padding: 20px;
 }
 
-.app, .menu, .game, .game-table, .neutral, .bet-selection, .bet-balance-information, .custom-bet{
+
+
+body {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  min-width: 100vw;
+  background-color: black;
+  color: white;
+  align-items: center;
+}
+
+
+
+.menu, .game, .game-table, .neutral, .bet-selection, .bet-balance-information, .custom-bet{
   display: flex;
   flex-direction:column;
   justify-content: center;
@@ -29,159 +43,153 @@ button, input {
   color: white;
 }
 
-.app {
-  min-height: 100vh;
-  min-width: 100vw;
-  background-color: black;
-  color: white;
+.menu {
   align-items: center;
-
-  .menu {
-    align-items: center;
-    .menu-title {
-      display:flex;
-      justify-content: center;
-      margin: 2rem;
-      color: #FFFFFF;
-      background: #000000;
-      text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 10px #FFF, 0 0 15px #49ff18, 
-        0 0 20px #49FF18, 0 0 25px #49FF18, 0 0 55px #49FF18, 0 0 75px #49ff18;
-      font-size: 10rem;
-      
+  .menu-title {
+    display:flex;
+    justify-content: center;
+    margin: 2rem;
+    color: #FFFFFF;
+    background: #000000;
+    text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 10px #FFF, 0 0 15px #49ff18, 
+      0 0 20px #49FF18, 0 0 25px #49FF18, 0 0 55px #49FF18, 0 0 75px #49ff18;
+    font-size: 10rem;
+    
+  }
+  a {
+    width: 50%;
+  }
+  .menu-item {
+    width: 100%;
+    border: 1px solid white;
+    border-radius: 5px;
+    background: none;
+    font-size: 2rem;
+    margin: 10px;
+    padding: 1.5rem;
+    color: white;
+    .new-game:hover {
+      border-color: red;
     }
-    .menu-item {
-      width: 50%;
-      border: 1px solid white;
-      border-radius: 5px;
-      background: none;
-      font-size: 2rem;
-      margin: 10px;
-      padding: 1.5rem;
+
+  }
+}
+
+.bet-selection {
+  min-width: 400px;
+  align-items: center;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left:50%;
+  padding: 20px 40px;
+  background-color: black;
+  border: 2px white solid;
+  border-radius: 10px;   
+  font-size: 30px;  
+  .bet-buttons {
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    input {
+      width: 22%;
+      margin: 2%;
+      border: white solid 2px;
+      border-radius: 50px;
+      font-size: 30px;
+      background-color: black;
       color: white;
-      .new-game:hover {
-        border-color: red;
-      }
-
+      padding: 20px 10px;
     }
-  }
-
-  .bet-selection {
-    min-width: 400px;
-    align-items: center;
-    position: absolute;
-    transform: translate(-50%, -50%);
-    top: 50%;
-    left:50%;
-    padding: 20px 40px;
-    background-color: black;
-    border: 2px white solid;
-    border-radius: 10px;   
-    font-size: 30px;  
-    .bet-buttons {
-      display:flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      input {
-        width: 22%;
-        margin: 2%;
-        border: white solid 2px;
-        border-radius: 50px;
-        font-size: 30px;
-        background-color: black;
-        color: white;
-        padding: 20px 10px;
-      }
-      input:hover {
-        background-color: white;
-        color: black;
-        
-      }
-     
-    }
-    .custom-bet {
-      margin: 20px;
-      align-items: center;
-
-    }
-    .bet-balance-information{
-      padding: 20px;
-      align-items: center;
-      p {
-        margin: 0;
-      }
-    }
-  }
-
-  .game {
-    font-size: 30px;
-    h1 {
-      font-size: 50px;
-      letter-spacing: 5px;
+    input:hover {
+      background-color: white;
+      color: black;
+      
     }
     
-    .game-table {
-      min-height: 600px;
-      height: 70vh;
-      min-width: 300px;
-      width: 40vw;
-      border: 2px solid white;
-      border-radius: 40px;
-      
-      .dealer-side, .player-side {
-        height: 30%;     
-        padding: 20px;   
-      }
-      .dealer-side {
-        border-bottom: 2px red solid;
-      }
-      .neutral {
-        flex-direction: row;
-        height: 40%;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 50px;
-        p {
-          margin: 0;
-          letter-spacing: 1px;
-        }
-        .deck {
-          position: relative;
-          .card1 {
-            position: relative;
-            top: 0;
-            left: 0;
-          }
-          .card2 {
-            position: absolute;
-            top: -2px;
-            left: -3px;
-          }
-          .card3 {
-            position: absolute;
-            top: -4px;
-            left: -6px;
-          }
-        }
-      }
-      .player-side {
-        border-top: 2px green solid;
-      }
-    }
-    .game-buttons {
-      display:flex;
-      margin: 20px;
-      justify-content: center;
-      flex-wrap: wrap;
+  }
+  .custom-bet {
+    margin: 20px;
+    align-items: center;
 
-      input {
-        margin: 15px;
-        width: 25%;
-        min-width: 180px;
-        
-      }
+  }
+  .bet-balance-information{
+    padding: 20px;
+    align-items: center;
+    p {
+      margin: 0;
     }
   }
-
-  
 }
+
+.game {
+  font-size: 30px;
+  h1 {
+    font-size: 50px;
+    letter-spacing: 5px;
+  }
+  
+  .game-table {
+    min-height: 600px;
+    height: 70vh;
+    min-width: 300px;
+    width: 40vw;
+    border: 2px solid white;
+    border-radius: 40px;
+    
+    .dealer-side, .player-side {
+      height: 30%;     
+      padding: 20px;   
+    }
+    .dealer-side {
+      border-bottom: 2px red solid;
+    }
+    .neutral {
+      flex-direction: row;
+      height: 40%;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 50px;
+      p {
+        margin: 0;
+        letter-spacing: 1px;
+      }
+      .deck {
+        position: relative;
+        .card1 {
+          position: relative;
+          top: 0;
+          left: 0;
+        }
+        .card2 {
+          position: absolute;
+          top: -2px;
+          left: -3px;
+        }
+        .card3 {
+          position: absolute;
+          top: -4px;
+          left: -6px;
+        }
+      }
+    }
+    .player-side {
+      border-top: 2px green solid;
+    }
+  }
+  .game-buttons {
+    display:flex;
+    margin: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    input {
+      margin: 15px;
+      width: 25%;
+      min-width: 180px;
+      
+    }
+  }
+}
+  
 
