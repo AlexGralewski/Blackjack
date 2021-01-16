@@ -28,7 +28,14 @@ body {
           align-items: center;
 }
 
-.menu, .game, .game-table, .neutral, .bet-selection, .bet-balance-information, .custom-bet {
+h1 {
+  font-size: 50px;
+  letter-spacing: 5px;
+  text-align: center;
+  margin: 0;
+}
+
+.menu, .game, .name-input, .high-scores, .rules, .game-table, .neutral, .bet-selection, .bet-balance-information, .custom-bet {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -152,13 +159,21 @@ body {
   margin: 0;
 }
 
-.game {
-  font-size: 30px;
+.bet-selection .bet-link-buttons {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 
-.game h1 {
-  font-size: 50px;
-  letter-spacing: 5px;
+.bet-selection .bet-link-buttons button {
+  width: 140px;
+}
+
+.game {
+  font-size: 30px;
 }
 
 .game .game-table {
@@ -241,5 +256,51 @@ body {
   margin: 15px;
   width: 25%;
   min-width: 180px;
+}
+
+.name-input {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 300px;
+}
+
+.name-input input {
+  margin: 20px;
+}
+
+.name-input .name-link-buttons {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.name-input .name-link-buttons button {
+  width: 140px;
+}
+
+.rules {
+  font-size: 2rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.rules button {
+  width: 140px;
+}
+
+.high-scores {
+  font-size: 2rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.high-scores button {
+  width: 140px;
 }
 /*# sourceMappingURL=index.css.map */

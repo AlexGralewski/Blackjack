@@ -5,7 +5,7 @@ function Menu(props) {
   return(
     <div className="menu">
       <div className="menu-title">Blackjack</div>
-      <Link to="/betselection" >
+      <Link to="/username" >
         <button className="menu-item new-game">
           New Game
         </button>

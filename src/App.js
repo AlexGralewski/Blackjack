@@ -6,13 +6,14 @@ import BetSelection from "./components/BetSelection"
 import PlayGame from "./components/PlayGame"
 import Rules from "./components/Rules"
 import HighScores from "./components/HighScores"
+import NameInput from "./components/NameInput"
 import "./App.css"
 
 class App extends React.Component {
   constructor() {
     super()
     this.state = {
-      username: 'Player',
+      username: 'Player', 
       bet: 0,
       balance: 1000,
       stake: 0,
@@ -68,9 +69,9 @@ class App extends React.Component {
   }
 
   handleBetChange(e) {
-    const {value} = e.target
+    const {name, value} = e.target
     this.setState({
-      bet: value
+      [name]: value
     })
   }
 
@@ -92,11 +93,15 @@ class App extends React.Component {
         <Route exact path="/" render={() => <Menu 
           newgame={startNewGame}
           />} />
+        <Route exact path="/username" render={() => <NameInput 
+          changeName={handleBetChange}
+          username={username}
+          />} />
         <Route exact path="/betselection" render={() => <BetSelection 
-          changebet={handleBetChange}
+          changeBet={handleBetChange}
           bet = {bet}
           balance = {balance}
-          confirmbet = {confirmBet}
+          confirmBet = {confirmBet}
           />} />
         <Route exact path="/game" render={() => <PlayGame 
           bet = {bet}

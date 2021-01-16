@@ -2,7 +2,7 @@ import React from "react"
 import {Link} from "react-router-dom"
 
 function BetSelection(props) {
-  const { changebet, confirmbet, bet, balance } = props
+  const { changeBet, confirmBet, bet, balance } = props
   return(
     <div className="bet-selection">
       <h1>BET</h1> 
@@ -11,37 +11,37 @@ function BetSelection(props) {
           type="button"
           name="bet"
           value="5"
-          onClick={changebet}/>
+          onClick={changeBet}/>
         <input 
           type="button"
           name="bet"
           value="10"
-          onClick={changebet}/>
+          onClick={changeBet}/>
         <input 
           type="button"
           name="bet"
           value="25"
-          onClick={changebet}/>
+          onClick={changeBet}/>
         <input 
           type="button"
           name="bet"
           value="50"
-          onClick={changebet}/>
+          onClick={changeBet}/>
         <input 
           type="button"
           name="bet"
           value="100"
-          onClick={changebet}/>
+          onClick={changeBet}/>
         <input 
           type="button"
           name="bet"
           value="500"
-          onClick={changebet}/>
+          onClick={changeBet}/>
         <input 
           type="button"
           name="bet"
           value={balance}
-          onClick={changebet}/>
+          onClick={changeBet}/>
       </div>
       <div className="custom-bet">
         <label>Custom Bet</label>
@@ -50,20 +50,26 @@ function BetSelection(props) {
           name="bet"
           step="5"
           value={bet}
-          onChange={changebet}
+          onChange={changeBet}
           />
       </div>
       <div className="bet-balance-information">
-        <p>Your bet: {balance-bet >= 0 && bet >= 0 ? `${bet}$`: "Invalid bet"}</p>
+        <p>Your bet: {balance >= bet && bet >= 0 ? `${bet}$`: "Invalid bet"}</p>
         <p>Your balance: {balance}$</p>
-        <p>Balance after bet: {balance-bet >= 0 && bet >= 0 ? `${balance-bet}$`: "Invalid bet"}</p>
+        <p>Balance after bet: {balance >= bet && bet >= 0 ? `${balance-bet}$`: "Invalid bet"}</p>
       </div>
-      <Link to="/game">
-
-        <button onClick={confirmbet}>
-          Confirm
-        </button>
-      </Link>
+      <div className="bet-link-buttons">
+        <Link to="/">
+          <button>
+            Back
+          </button>
+        </Link>
+        <Link to="/game" style={bet > 0 && balance >= bet ? { display:"flex"} : { display:"none"}}>
+          <button onClick={confirmBet}>
+            Confirm
+          </button>
+        </Link>
+      </div>
     </div>
   )
 }

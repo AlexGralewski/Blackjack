@@ -24,9 +24,14 @@ body {
   align-items: center;
 }
 
+h1 {
+  font-size: 50px;
+  letter-spacing: 5px;
+  text-align: center;
+  margin: 0;
+}
 
-
-.menu, .game, .game-table, .neutral, .bet-selection, .bet-balance-information, .custom-bet{
+.menu, .game, .name-input, .high-scores, .rules, .game-table, .neutral, .bet-selection, .bet-balance-information, .custom-bet{
   display: flex;
   flex-direction:column;
   justify-content: center;
@@ -120,14 +125,19 @@ body {
       margin: 0;
     }
   }
+  .bet-link-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    button {
+      width: 140px;
+    }
+  }
 }
 
 .game {
   font-size: 30px;
-  h1 {
-    font-size: 50px;
-    letter-spacing: 5px;
-  }
+
   
   .game-table {
     min-height: 600px;
@@ -191,5 +201,35 @@ body {
     }
   }
 }
-  
 
+.name-input {
+  align-items: center;
+  width: 300px;
+  input {
+    margin: 20px;
+  }
+  .name-link-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    button {
+      width: 140px;
+    }
+  }
+}
+
+.rules {
+  font-size: 2rem;
+  align-items: center;
+  button {
+    width: 140px;
+  }
+}
+
+.high-scores {
+  font-size: 2rem;
+  align-items: center;
+  button {
+    width: 140px;
+  }
+}
