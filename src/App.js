@@ -5,6 +5,7 @@ import Menu from "./components/Menu"
 import BetSelection from "./components/BetSelection"
 import PlayGame from "./components/PlayGame"
 import Rules from "./components/Rules"
+import HighScores from "./components/HighScores"
 import "./App.css"
 
 class App extends React.Component {
@@ -106,6 +107,8 @@ class App extends React.Component {
           dealerPoints={dealerPoints}
           dealCards={dealCards}
           />} />
+        <Route exact path="/highscores" render={() => <HighScores/>} />
+        <Route exact path="/rules" render={() => <Rules/>} />
         
     </Router>
     )

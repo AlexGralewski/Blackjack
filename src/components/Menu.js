@@ -15,12 +15,12 @@ function Menu(props) {
           Load Game
         </button>
       </Link>
-      <Link to="/betselection" >
+      <Link to="/highscores" >
         <button className="menu-item high-scores">
           High Scores
         </button>
       </Link>
-      <Link to="/betselection" >
+      <Link to="/rules" >
         <button className="menu-item rules">
           Rules
         </button>
