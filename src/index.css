@@ -10,6 +10,11 @@ button, input {
   border-radius: 20px;
   font-size: 30px;
   padding: 20px;
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
 }
 
 body {
@@ -173,14 +178,19 @@ h1 {
 }
 
 .game {
+  width: 100vw;
+  height: 100vh;
   font-size: 30px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .game .game-table {
-  min-height: 600px;
-  height: 70vh;
-  min-width: 300px;
-  width: 40vw;
+  max-height: 2000px;
+  height: 80vh;
+  max-width: 1500px;
+  width: 80vw;
   border: 2px solid white;
   border-radius: 40px;
 }
@@ -240,7 +250,7 @@ h1 {
   border-top: 2px green solid;
 }
 
-.game .game-buttons {
+.game .hit-stand-double-buttons {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -252,10 +262,28 @@ h1 {
       flex-wrap: wrap;
 }
 
-.game .game-buttons input {
+.game .hit-stand-double-buttons input {
   margin: 15px;
   width: 25%;
   min-width: 180px;
+}
+
+.game .quit-save-buttons {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.game .quit-save-buttons a {
+  margin: 20px;
+}
+
+.game .quit-save-buttons a button {
+  width: 150px;
 }
 
 .name-input {
@@ -282,25 +310,14 @@ h1 {
   width: 140px;
 }
 
-.rules {
+.rules, .high-scores, .credits {
   font-size: 2rem;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
 }
 
-.rules button {
-  width: 140px;
-}
-
-.high-scores {
-  font-size: 2rem;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.high-scores button {
+.rules button, .high-scores button, .credits button {
   width: 140px;
 }
 /*# sourceMappingURL=index.css.map */

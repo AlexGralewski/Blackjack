@@ -2,10 +2,11 @@ import React from "react"
 import {Link} from "react-router-dom"
 
 function Menu(props) {
+  const {startNewGame} = props
   return(
     <div className="menu">
       <div className="menu-title">Blackjack</div>
-      <Link to="/username" >
+      <Link to="/username" onClick={startNewGame}>
         <button className="menu-item new-game">
           New Game
         </button>
@@ -23,6 +24,11 @@ function Menu(props) {
       <Link to="/rules" >
         <button className="menu-item rules">
           Rules
+        </button>
+      </Link>
+      <Link to="/credits" >
+        <button className="menu-item credits">
+          Credits
         </button>
       </Link>
     </div>

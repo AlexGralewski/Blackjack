@@ -10,9 +10,12 @@ button, input {
   border-radius: 20px;
   font-size: 30px;
   padding: 20px;
+  text-align: center;
 }
 
-
+a {
+  text-decoration: none;
+}
 
 body {
   display: flex;
@@ -136,14 +139,15 @@ h1 {
 }
 
 .game {
+  width: 100vw;
+  height: 100vh;
   font-size: 30px;
-
-  
+  align-items: center;
   .game-table {
-    min-height: 600px;
-    height: 70vh;
-    min-width: 300px;
-    width: 40vw;
+    max-height: 2000px;
+    height: 80vh;
+    max-width: 1500px;
+    width: 80vw;
     border: 2px solid white;
     border-radius: 40px;
     
@@ -187,7 +191,7 @@ h1 {
       border-top: 2px green solid;
     }
   }
-  .game-buttons {
+  .hit-stand-double-buttons {
     display:flex;
     margin: 20px;
     justify-content: center;
@@ -198,6 +202,18 @@ h1 {
       width: 25%;
       min-width: 180px;
       
+    }
+  }
+
+  .quit-save-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    a {
+      margin: 20px;
+      button {
+        width: 150px;
+      }
     }
   }
 }
@@ -218,7 +234,7 @@ h1 {
   }
 }
 
-.rules {
+.rules, .high-scores, .credits {
   font-size: 2rem;
   align-items: center;
   button {
@@ -226,10 +242,3 @@ h1 {
   }
 }
 
-.high-scores {
-  font-size: 2rem;
-  align-items: center;
-  button {
-    width: 140px;
-  }
-}

@@ -5,6 +5,7 @@ import Menu from "./components/Menu"
 import BetSelection from "./components/BetSelection"
 import PlayGame from "./components/PlayGame"
 import Rules from "./components/Rules"
+import Credits from "./components/Credits"
 import HighScores from "./components/HighScores"
 import NameInput from "./components/NameInput"
 import "./App.css"
@@ -13,25 +14,26 @@ class App extends React.Component {
   constructor() {
     super()
     this.state = {
-      username: 'Player', 
-      bet: 0,
-      balance: 1000,
-      stake: 0,
-      playerHand: [],
-      playerPoints: 0,
-      dealerHand: [],
-      dealerPoints: 0,
-      deck: '',
-      gameCount: 1,
+      username: 'Player', //Player's username
+      bet: 5, //Player's current bet in $
+      balance: 1000, //Player's total balance in $
+      stake: 0, //Possible winnings of the current round (bet + 1,5 bet)
+      playerHand: [], //Player's hand
+      playerPoints: 0, //Player's hand score
+      dealerHand: [], //Dealer's hand
+      dealerPoints: 0, //Dealer's hand score
+      deck: '', //deckCode
+      roundCount: 1, // round counter (out of 5)
     }
     this.shuffleCards = this.shuffleCards.bind(this)
-    this.dealCards = this.dealCards.bind(this)
+    this.dealStartingHands = this.dealStartingHands.bind(this)
     this.startNewGame = this.startNewGame.bind(this)
     this.confirmBet = this.confirmBet.bind(this)
     this.handleBetChange = this.handleBetChange.bind(this)
   }
 
   confirmBet() {
+    
     const { bet, balance } = this.state
     if (bet > balance || bet <= 0) {
       alert("Bet should be positive number smaller than your balance.")
@@ -40,7 +42,7 @@ class App extends React.Component {
       this.setState(prevState => {
         return({
           balance: prevState.balance - bet,
-          stake: bet*2,
+          stake: bet*2.5,
         })
       }, this.shuffleCards())
     } 
@@ -62,10 +64,9 @@ class App extends React.Component {
       .then(data => console.log(data))
   }
 
-  dealCards() {
-    const dealt = this.drawCards(4)
+  dealStartingHands() {
+    console.log(this.state.deck)
 
-    console.log(dealt)
   }
 
   handleBetChange(e) {
@@ -77,21 +78,21 @@ class App extends React.Component {
 
   startNewGame() {
     this.setState({
-      display: {
-        menu:'none', 
-        betSel:'flex',
-        table:'none'}
+      username: 'Player',
+      bet: 5,
+      balance: 1000,
+      roundCount:1
     })
   }
 
 
   render() {
-    const { shuffleCards, drawCards, dealCards, handleBetChange, startNewGame, confirmBet} = this
-    const {username, bet, balance, stake, playerHand, playerPoints, dealerHand, dealerPoints, deck, display, gameCount} = this.state
+    const { dealStartingHands, handleBetChange, startNewGame, confirmBet} = this
+    const {username, bet, balance, stake, playerHand, playerPoints, dealerHand, dealerPoints, roundCount} = this.state
     return (
       <Router>
         <Route exact path="/" render={() => <Menu 
-          newgame={startNewGame}
+          startNewGame={startNewGame}
           />} />
         <Route exact path="/username" render={() => <NameInput 
           changeName={handleBetChange}
@@ -109,11 +110,15 @@ class App extends React.Component {
           balance={balance}
           username={username}
           playerPoints={playerPoints}
+          playerHand={playerHand}
           dealerPoints={dealerPoints}
-          dealCards={dealCards}
+          dealerHand={dealerHand}
+          dealStartingHands={dealStartingHands}
+          roundCount={roundCount}
           />} />
         <Route exact path="/highscores" render={() => <HighScores/>} />
         <Route exact path="/rules" render={() => <Rules/>} />
+        <Route exact path="/credits" render={() => <Credits/>} />
         
     </Router>
     )
