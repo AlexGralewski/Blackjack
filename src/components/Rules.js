@@ -8,6 +8,7 @@ function Rules(props) {
         <li>Single player vs dealer</li>
         <li>Decks used: 6</li>
         <li>Game length: 5 rounds</li>
+        <li>Game length: 5 rounds</li>
       </ul>
       <Link to="/">
         <button>

@@ -4,7 +4,7 @@ import {Link} from "react-router-dom"
 import CardDisplay from "./CardDisplay"
 
 function PlayGame(props) {
-  const { bet,stake, balance, dealerPoints,username, playerPoints, hit, playerHand, dealerHand,roundCount} = props
+  const { quitAndReset, bet,stake, balance, dealerPoints,username, playerPoints, hit, playerHand, dealerHand,roundCount, doubledown, stand} = props
   return(
     <div className="game">
       <div className="quit-save-buttons">
@@ -13,7 +13,7 @@ function PlayGame(props) {
             Save and Quit
           </button>
         </Link>
-        <Link to="/">
+        <Link to="/" onClick={quitAndReset}>
           <button>
             Quit
           </button>
@@ -68,13 +68,13 @@ function PlayGame(props) {
           value="Double Down"
           style={playerPoints >= 21 ? { display:"none"} : { display:"block"}}
           onClick={() => {
-            hit()}
+            doubledown()}
           }/>
         <input 
           type="button"
           value="Stand"
           onClick={() => {
-            hit()}
+            stand()}
           }/>
       </div>
 
