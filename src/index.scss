@@ -7,7 +7,7 @@ button, input {
   background-color: black;
   color: white;
   border: 2px white solid;
-  border-radius: 20px;
+  border-radius: 15px;
   font-size: 30px;
   padding: 20px;
   text-align: center;
@@ -34,7 +34,8 @@ h1 {
   margin: 0;
 }
 
-.menu, .game, .name-input, .high-scores, .rules, .game-table, .neutral, .bet-selection, .bet-balance-information, .custom-bet{
+.menu, .game, .name-input, .high-scores, .rules, .game-table, .neutral, 
+.bet-selection, .bet-balance-information, .custom-bet, .dealer-side, .player-side{
   display: flex;
   flex-direction:column;
   justify-content: center;
@@ -42,13 +43,20 @@ h1 {
 
 
 .card {
-  height: 130px;
-  width: 80px;
-  border: 2px solid white;
+  height: 100px;
   border-radius: 10px;
-  padding: 10px;
+  margin: 0 2px;
   background-color: black;
   color: white;
+  img {
+    height: 100%;
+  }
+}
+
+.reversed {
+  border: 1px solid white;
+  border-radius: 5px;
+  width: 72px;
 }
 
 .menu {
@@ -69,8 +77,6 @@ h1 {
   }
   .menu-item {
     width: 100%;
-    border: 1px solid white;
-    border-radius: 5px;
     background: none;
     font-size: 2rem;
     margin: 10px;
@@ -112,14 +118,15 @@ h1 {
     input:hover {
       background-color: white;
       color: black;
-      
     }
     
   }
   .custom-bet {
     margin: 20px;
     align-items: center;
-
+    input {
+      width: 100%;
+    }
   }
   .bet-balance-information{
     padding: 20px;
@@ -143,21 +150,39 @@ h1 {
   height: 100vh;
   font-size: 30px;
   align-items: center;
+
   .game-table {
     max-height: 2000px;
     height: 80vh;
     max-width: 1500px;
     width: 80vw;
-    border: 2px solid white;
+    border: 5px solid white;
     border-radius: 40px;
     
+    hr {
+      
+      width:80%;
+      height: 2px;
+      background-color: white;
+    }
     .dealer-side, .player-side {
+      align-items: center;
+      position: relative;
       height: 30%;     
       padding: 20px;   
+      .name-points {
+        position: absolute;
+        transform: translateY(-50%);
+        top: 50%;
+        left: 5%;
+        font-size: 50px;
+        text-align: center;
+      }
+      .hand {
+        display: flex;
+      }
     }
-    .dealer-side {
-      border-bottom: 2px red solid;
-    }
+    
     .neutral {
       flex-direction: row;
       height: 40%;
@@ -187,13 +212,10 @@ h1 {
         }
       }
     }
-    .player-side {
-      border-top: 2px green solid;
-    }
   }
   .hit-stand-double-buttons {
     display:flex;
-    margin: 20px;
+    margin: 0 20px;
     justify-content: center;
     flex-wrap: wrap;
 
@@ -206,11 +228,11 @@ h1 {
   }
 
   .quit-save-buttons {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
+    position: absolute;
+    top: 5%;
+    right: 5%;
     a {
-      margin: 20px;
+      margin: 0 20px;
       button {
         width: 150px;
       }
@@ -223,6 +245,9 @@ h1 {
   width: 300px;
   input {
     margin: 20px;
+    border: white solid 1px;
+    border-radius: 5px;
+    text-align: start;
   }
   .name-link-buttons {
     width: 100%;

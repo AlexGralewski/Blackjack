@@ -31,6 +31,7 @@ function Menu(props) {
           Credits
         </button>
       </Link>
+      
     </div>
   )
 }

@@ -1,14 +1,16 @@
 import React from "react"
 import {Link} from "react-router-dom"
 
+import CardDisplay from "./CardDisplay"
+
 function PlayGame(props) {
-  const { bet,stake, balance, dealerPoints,username, playerPoints, dealCards, playerHand, dealerHand,roundCount} = props
+  const { bet,stake, balance, dealerPoints,username, playerPoints, hit, playerHand, dealerHand,roundCount} = props
   return(
     <div className="game">
       <div className="quit-save-buttons">
         <Link to="/">
           <button>
-            Save
+            Save and Quit
           </button>
         </Link>
         <Link to="/">
@@ -19,10 +21,15 @@ function PlayGame(props) {
       </div>          
       <div className="game-table" >
         <div className="dealer-side">
-          <div className="player-title">Dealer</div>
-          <div className="dealer-hand">{dealerHand}</div>
-          <div className="dealer-points">{dealerPoints}</div>
+          <div className="name-points">
+            <div className="name">Dealer</div>
+            <div className="points">{dealerPoints}</div>
+          </div>
+          <div className="hand">
+            {dealerHand.map((card,index) => <CardDisplay key={index} card={card}/>)}
+          </div>
         </div>
+        <hr />
         <div className="neutral">
           <div className="values-info">
             <p>Round: {roundCount}/5</p>
@@ -31,33 +38,44 @@ function PlayGame(props) {
             <p>Balance: {balance}</p>
           </div>
           <div className="deck">
-            <div className="card card1" />
-            <div className="card card2" />
-            <div className="card card3" />
+            <div className="card card1 reversed" />
+            <div className="card card2 reversed" />
+            <div className="card card3 reversed" />
           </div>
         </div>
+        <hr />
         <div className="player-side">
-          <div className="player-title">{username}</div>
-          <div className="player-hand">{playerHand}</div>
-          <div className="player-points">{playerPoints}</div>
+          <div className="name-points">
+            <div className="name">{username}</div>
+            <div className="points">{playerPoints}</div>
+          </div>
+          <div className="hand">
+            {playerHand.map((card,index) => <CardDisplay key={index} card={card}/>)}
+            </div>
         </div>
       </div>
       <div className="hit-stand-double-buttons">
         <input 
           type="button"
           value="Hit"
-          onClick={dealCards}
+          onClick={() => {
+            hit()}
+          }
           style={playerPoints >= 21 ? { display:"none"} : { display:"block"}}
           />
         <input 
           type="button"
           value="Double Down"
           style={playerPoints >= 21 ? { display:"none"} : { display:"block"}}
-          onClick={dealCards}/>
+          onClick={() => {
+            hit()}
+          }/>
         <input 
           type="button"
           value="Stand"
-          onClick={dealCards}/>
+          onClick={() => {
+            hit()}
+          }/>
       </div>
 
     </div>

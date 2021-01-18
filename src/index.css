@@ -7,7 +7,7 @@ button, input {
   background-color: black;
   color: white;
   border: 2px white solid;
-  border-radius: 20px;
+  border-radius: 15px;
   font-size: 30px;
   padding: 20px;
   text-align: center;
@@ -40,7 +40,8 @@ h1 {
   margin: 0;
 }
 
-.menu, .game, .name-input, .high-scores, .rules, .game-table, .neutral, .bet-selection, .bet-balance-information, .custom-bet {
+.menu, .game, .name-input, .high-scores, .rules, .game-table, .neutral,
+.bet-selection, .bet-balance-information, .custom-bet, .dealer-side, .player-side {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -54,13 +55,21 @@ h1 {
 }
 
 .card {
-  height: 130px;
-  width: 80px;
-  border: 2px solid white;
+  height: 100px;
   border-radius: 10px;
-  padding: 10px;
+  margin: 0 2px;
   background-color: black;
   color: white;
+}
+
+.card img {
+  height: 100%;
+}
+
+.reversed {
+  border: 1px solid white;
+  border-radius: 5px;
+  width: 72px;
 }
 
 .menu {
@@ -89,8 +98,6 @@ h1 {
 
 .menu .menu-item {
   width: 100%;
-  border: 1px solid white;
-  border-radius: 5px;
   background: none;
   font-size: 2rem;
   margin: 10px;
@@ -153,6 +160,10 @@ h1 {
           align-items: center;
 }
 
+.bet-selection .custom-bet input {
+  width: 100%;
+}
+
 .bet-selection .bet-balance-information {
   padding: 20px;
   -webkit-box-align: center;
@@ -191,17 +202,39 @@ h1 {
   height: 80vh;
   max-width: 1500px;
   width: 80vw;
-  border: 2px solid white;
+  border: 5px solid white;
   border-radius: 40px;
 }
 
+.game .game-table hr {
+  width: 80%;
+  height: 2px;
+  background-color: white;
+}
+
 .game .game-table .dealer-side, .game .game-table .player-side {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
   height: 30%;
   padding: 20px;
 }
 
-.game .game-table .dealer-side {
-  border-bottom: 2px red solid;
+.game .game-table .dealer-side .name-points, .game .game-table .player-side .name-points {
+  position: absolute;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  top: 50%;
+  left: 5%;
+  font-size: 50px;
+  text-align: center;
+}
+
+.game .game-table .dealer-side .hand, .game .game-table .player-side .hand {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .game .game-table .neutral {
@@ -246,15 +279,11 @@ h1 {
   left: -6px;
 }
 
-.game .game-table .player-side {
-  border-top: 2px green solid;
-}
-
 .game .hit-stand-double-buttons {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin: 20px;
+  margin: 0 20px;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -269,17 +298,13 @@ h1 {
 }
 
 .game .quit-save-buttons {
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
+  position: absolute;
+  top: 5%;
+  right: 5%;
 }
 
 .game .quit-save-buttons a {
-  margin: 20px;
+  margin: 0 20px;
 }
 
 .game .quit-save-buttons a button {
@@ -295,6 +320,9 @@ h1 {
 
 .name-input input {
   margin: 20px;
+  border: white solid 1px;
+  border-radius: 5px;
+  text-align: start;
 }
 
 .name-input .name-link-buttons {

@@ -50,6 +50,8 @@ function BetSelection(props) {
           name="bet"
           step="5"
           value={bet}
+          min="0"
+          max={balance}
           onChange={changeBet}
           />
       </div>
