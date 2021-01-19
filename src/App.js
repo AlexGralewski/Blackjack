@@ -278,10 +278,14 @@ class App extends React.Component {
     localStorage.setItem('save', JSON.stringify(save))
   }
 
+  resetGame = () => {
+    localStorage.clear()
+  }
+
   render() {
     const { saveGame, nextRound, resetGameState, dealStartingHands,
       handleBetChange, startNewGame, confirmBet, handleHit,
-      handleDoubleDown, dealerDraw, loadSave } = this
+      handleDoubleDown, dealerDraw, loadSave, resetGame } = this
     const { endGamePopup, endRoundPopup, username, bet, balance, stake,
       playerHand, playerPoints, dealerHand, dealerPoints, roundCount, roundResult, 
       roundHistory} = this.state
@@ -290,6 +294,7 @@ class App extends React.Component {
         <Route exact path="/" render={() => <Menu
           startNewGame={startNewGame}
           loadSave={loadSave}
+          resetGame
         />} />
         <Route exact path="/username" render={() => <NameInput
           changeName={handleBetChange}

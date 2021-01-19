@@ -4,7 +4,7 @@ import {Link} from "react-router-dom"
 import Footer from "./Footer"
 
 function Menu(props) {
-  const {startNewGame, loadSave} = props
+  const {startNewGame, loadSave, resetGame} = props
   return(
     <div className="menu">
       <div className="menu-title">Blackjack</div>
@@ -33,7 +33,7 @@ function Menu(props) {
           Credits
         </button>
       </Link>
-      <button className="reset-game">
+      <button className="reset-game" onClick={resetGame}>
         Reset Game
       </button>
       <Footer />
