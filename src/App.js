@@ -27,7 +27,7 @@ class App extends React.Component {
       roundCount: 1, // round counter (out of 5)
       endRoundPopup: "none", //determines if end-round popup is displayed
       endGamePopup: "none", //determines if end-round popup is displayed
-      roundResult: "lost",  // tells if current round was "won", "drew", "lost"
+      roundResult: "",  // tells if current round was "won", "drew", "lost"
       roundHistory: [] //array containing data about previous hands
     }
     this.shuffleCards = this.shuffleCards.bind(this)
@@ -59,23 +59,13 @@ class App extends React.Component {
     fetch('https://deckofcardsapi.com/api/deck/bhwcmpj3ltym/shuffle/')
       .then(response => response.json())
       .then(data => {
-        console.log(data)
         this.setState({
           deck: data.deck_id
         }, this.dealStartingHands())
       });
   }
 
-  saveGame = () => {
-    let save = { username: this.state.username, balance: this.state.balance, round: this.state.roundCount }
-    localStorage.setItem('save', JSON.stringify(save))
-  }
 
-  loadSave = () => {
-    let save = localStorage.getItem('save')
-    save = JSON.parse(save);
-    console.log(save)
-  }
 
   dealStartingHands = () => {
     this.dealCard('player')
@@ -208,22 +198,26 @@ class App extends React.Component {
       if (prevState.roundCount === 5 || this.state.balance === 0) {
         this.gameEnd()
       }
-      if (playerPoints > dealerPoints && playerPoints < 22) {
+      if ((playerPoints > dealerPoints && playerPoints < 22) || dealerPoints > 21) {
         winlosedraw = "won"
         return ({
           balance: prevState.balance + prevState.stake,
-          endRoundPopup: "flex"
+          endRoundPopup: "flex",
+          roundResult: winlosedraw
         })
       } else if (playerPoints === dealerPoints) {
         winlosedraw = "drew"
         return ({
           balance: prevState.balance + prevState.bet,
-          endRoundPopup: "flex"
+          endRoundPopup: "flex",
+          roundResult: winlosedraw
+
         })
       } else {
         winlosedraw = "lost"
         return ({
-          endRoundPopup: "flex"
+          endRoundPopup: "flex",
+          roundResult: winlosedraw
         })
       }
     })
@@ -263,18 +257,39 @@ class App extends React.Component {
     })
   }
 
+  saveGame = () => {
+    let save = { username: this.state.username, balance: this.state.balance, round: this.state.roundCount }
+    localStorage.setItem('save', JSON.stringify(save))
+  }
+
+  loadSave = () => {
+    let save = localStorage.getItem('save')
+    save = JSON.parse(save);
+    console.log(save)
+    this.setState({
+      username: save.username,
+      balance: save.balance,
+      roundCount: save.round
+    })
+  }
+
+  saveResult = () => {
+    let save = { username: this.state.username, balance: this.state.balance, round: this.state.roundCount }
+    localStorage.setItem('save', JSON.stringify(save))
+  }
 
   render() {
     const { saveGame, nextRound, resetGameState, dealStartingHands,
       handleBetChange, startNewGame, confirmBet, handleHit,
-      handleDoubleDown, dealerDraw } = this
+      handleDoubleDown, dealerDraw, loadSave } = this
     const { endGamePopup, endRoundPopup, username, bet, balance, stake,
-      playerHand, playerPoints, dealerHand, dealerPoints, roundCount, roundResult
-    } = this.state
+      playerHand, playerPoints, dealerHand, dealerPoints, roundCount, roundResult, 
+      roundHistory} = this.state
     return (
       <Router>
         <Route exact path="/" render={() => <Menu
           startNewGame={startNewGame}
+          loadSave={loadSave}
         />} />
         <Route exact path="/username" render={() => <NameInput
           changeName={handleBetChange}
@@ -310,7 +325,9 @@ class App extends React.Component {
         <Route exact path="/highscores" render={() => <HighScores />} />
         <Route exact path="/rules" render={() => <Rules />} />
         <Route exact path="/credits" render={() => <Credits />} />
-        <Route exact path="/roundhistory" render={() => <RoundHistory />} />
+        <Route exact path="/roundhistory" render={() => <RoundHistory 
+          roundHistory={roundHistory}
+          />} />
 
       </Router>
     )

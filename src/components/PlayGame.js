@@ -27,7 +27,7 @@ function PlayGame(props) {
             <p>Stake: {stake} </p>
             <p>Balance: {balance}</p>
           </div>
-          <div className="quit-save-buttons">
+          <div className="quit-save-buttons" onClick={saveGame}>
             <Link to="/">
               <button>
                 Save and Quit
@@ -36,6 +36,11 @@ function PlayGame(props) {
             <Link to="/" onClick={quitAndReset}>
               <button>
                 Quit
+              </button>
+            </Link>
+            <Link to="/roundhistory">
+              <button>
+                Round history
               </button>
             </Link>
           </div>
@@ -83,24 +88,13 @@ function PlayGame(props) {
           } />
       </div>
       <div className="end-round-popup" style={{ display: endRoundPopup }}>
-        You {roundResult} this round.
+        You {roundResult} round {roundCount}
           <div className="end-round-buttons">
           <Link to="/betselection" onClick={nextRound}>
             <button>
               Next Round
               </button>
           </Link>
-          <Link to="/" onClick={saveGame}>
-            <button>
-              Save and Quit
-              </button>
-          </Link>
-          <Link to="/">
-            <button>
-              Quit
-              </button>
-          </Link>
-
         </div>
       </div>
       <div className="end-round-popup" style={{ display: endGamePopup }}>

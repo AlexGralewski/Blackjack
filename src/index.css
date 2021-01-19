@@ -86,11 +86,11 @@ h1 {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  margin: 2rem;
+  margin: 10px;
   color: #FFFFFF;
   background: #000000;
   text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 10px #FFF, 0 0 15px #49ff18,  0 0 20px #49FF18, 0 0 25px #49FF18, 0 0 55px #49FF18, 0 0 75px #49ff18;
-  font-size: 10rem;
+  font-size: 200px;
 }
 
 .menu a {
@@ -100,13 +100,21 @@ h1 {
 .menu .menu-item {
   width: 100%;
   background: none;
-  font-size: 2rem;
+  font-size: 40px;
   margin: 10px;
   padding: 1.5rem;
   color: white;
 }
 
 .menu .menu-item .new-game:hover {
+  border-color: red;
+}
+
+.menu .reset-game {
+  position: fixed;
+  bottom: 10%;
+  right: 5%;
+  color: red;
   border-color: red;
 }
 
@@ -329,6 +337,7 @@ h1 {
   min-height: 300px;
   height: 30%;
   background-color: black;
+  font-size: 50px;
 }
 
 .game .end-round-popup button {
@@ -379,5 +388,6 @@ footer {
   text-align: center;
   bottom: 0;
   padding: 20px;
+  background-color: black;
 }
 /*# sourceMappingURL=index.css.map */
