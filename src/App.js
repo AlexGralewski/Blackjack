@@ -9,6 +9,7 @@ import Credits from "./components/Credits"
 import HighScores from "./components/HighScores"
 import NameInput from "./components/NameInput"
 import "./App.css"
+import RoundHistory from "./components/RoundHistory"
 
 class App extends React.Component {
   constructor() {
@@ -24,7 +25,10 @@ class App extends React.Component {
       dealerPoints: 0, //Dealer's hand score
       deck: 'bhwcmpj3ltym', //deckCode
       roundCount: 1, // round counter (out of 5)
-      roundEndDisplay: "none"
+      endRoundPopup: "none", //determines if end-round popup is displayed
+      endGamePopup: "none", //determines if end-round popup is displayed
+      roundResult: "lost",  // tells if current round was "won", "drew", "lost"
+      roundHistory: [] //array containing data about previous hands
     }
     this.shuffleCards = this.shuffleCards.bind(this)
     this.dealStartingHands = this.dealStartingHands.bind(this)
@@ -44,6 +48,8 @@ class App extends React.Component {
         return ({
           balance: prevState.balance - bet,
           stake: bet * 2.5,
+          endRoundPopup: "none",
+          endGamePopup: "none"
         })
       }, this.shuffleCards())
     }
@@ -60,7 +66,16 @@ class App extends React.Component {
       });
   }
 
+  saveGame = () => {
+    let save = { username: this.state.username, balance: this.state.balance, round: this.state.roundCount }
+    localStorage.setItem('save', JSON.stringify(save))
+  }
 
+  loadSave = () => {
+    let save = localStorage.getItem('save')
+    save = JSON.parse(save);
+    console.log(save)
+  }
 
   dealStartingHands = () => {
     this.dealCard('player')
@@ -134,6 +149,7 @@ class App extends React.Component {
       dealerPoints: 0,
       deck: 'bhwcmpj3ltym',
       roundCount: 1,
+
     })
   }
 
@@ -175,10 +191,7 @@ class App extends React.Component {
     }
   }
   checkDealerPoints = () => {
-
-    console.log(this.state.dealerPoints)
     setTimeout(() => {
-
       if (this.state.dealerPoints < 17 && this.state.dealerPoints < this.state.playerPoints) {
         this.dealerDraw()
       } else {
@@ -188,29 +201,76 @@ class App extends React.Component {
   }
 
   roundEnd = () => {
-    alert("round end")
+    const { playerPoints, dealerPoints } = this.state
+    this.saveRoundHistory()
     this.setState(prevState => {
-      if (prevState.roundCount === 5) {
+      let winlosedraw
+      if (prevState.roundCount === 5 || this.state.balance === 0) {
         this.gameEnd()
       }
-      return ({
+      if (playerPoints > dealerPoints && playerPoints < 22) {
+        winlosedraw = "won"
+        return ({
+          balance: prevState.balance + prevState.stake,
+          endRoundPopup: "flex"
+        })
+      } else if (playerPoints === dealerPoints) {
+        winlosedraw = "drew"
+        return ({
+          balance: prevState.balance + prevState.bet,
+          endRoundPopup: "flex"
+        })
+      } else {
+        winlosedraw = "lost"
+        return ({
+          endRoundPopup: "flex"
+        })
+      }
+    })
+  }
 
+  saveRoundHistory = () => {
+    this.setState(prevState => {
+      return({
+        roundHistory: [...prevState.roundHistory, {
+          round: this.state.roundCount,
+          playerHand: this.state.playerHand,
+          playerPoints: this.state.playerPoints,
+          dealerHand: this.state.dealerHand,
+          dealerPoints: this.state.dealerPoints,
+        }]
+      })
+    })
+  }
+
+  nextRound = () => {
+    this.setState(prevState => {
+      return ({
         balance: prevState.balance + prevState.stake,
-        stake: 0,
-        bet: 5,
-        roundCount: prevState.roundCount + 1
+        playerHand: [],
+        playerPoints: 0,
+        dealerHand: [],
+        dealerPoints: 0,
+        roundCount: prevState.roundCount + 1,
+        endRoundPopup: "none"
       })
     })
   }
 
   gameEnd = () => {
-
+    this.setState({
+      endGamePopup: "flex"
+    })
   }
 
 
   render() {
-    const { resetGameState, dealStartingHands, handleBetChange, startNewGame, confirmBet, handleHit, handleDoubleDown, dealerDraw } = this
-    const { username, bet, balance, stake, playerHand, playerPoints, dealerHand, dealerPoints, roundCount } = this.state
+    const { saveGame, nextRound, resetGameState, dealStartingHands,
+      handleBetChange, startNewGame, confirmBet, handleHit,
+      handleDoubleDown, dealerDraw } = this
+    const { endGamePopup, endRoundPopup, username, bet, balance, stake,
+      playerHand, playerPoints, dealerHand, dealerPoints, roundCount, roundResult
+    } = this.state
     return (
       <Router>
         <Route exact path="/" render={() => <Menu
@@ -241,10 +301,16 @@ class App extends React.Component {
           stand={dealerDraw}
           roundCount={roundCount}
           quitAndReset={resetGameState}
+          endRoundPopup={endRoundPopup}
+          endGamePopup={endGamePopup}
+          nextRound={nextRound}
+          saveGame={saveGame}
+          roundResult={roundResult}
         />} />
         <Route exact path="/highscores" render={() => <HighScores />} />
         <Route exact path="/rules" render={() => <Rules />} />
         <Route exact path="/credits" render={() => <Credits />} />
+        <Route exact path="/roundhistory" render={() => <RoundHistory />} />
 
       </Router>
     )

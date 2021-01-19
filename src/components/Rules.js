@@ -1,8 +1,10 @@
 import React from "react"
 import { Link } from "react-router-dom"
 
-function Rules(props) {
-  return(
+import Footer from "./Footer"
+
+function Rules() {
+  return (
     <div className="rules">
       <ul>
         <li>Single player vs dealer</li>
@@ -15,8 +17,9 @@ function Rules(props) {
           Back
         </button>
       </Link>
+      <Footer />
     </div>
-  ) 
+  )
 }
 
-export default (Rules)
+export default Rules

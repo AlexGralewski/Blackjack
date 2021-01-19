@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "react-router-dom"
 
-
+import Footer from "./Footer"
 
 function Credits(props) {
   return(
@@ -15,6 +15,7 @@ function Credits(props) {
           Back
         </button>
       </Link>
+      <Footer />
     </div>
   ) 
 }

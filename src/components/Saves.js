@@ -1,12 +1,11 @@
 import React from "react"
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom"
 
 import Footer from "./Footer"
 
-function HighScores() {
-  return(
-    <div className="high-scores">
-      <h1>High Scores</h1>
+function Saves() {
+  return (
+    <div className="saves">
       <Link to="/">
         <button>
           Back
@@ -17,4 +16,4 @@ function HighScores() {
   )
 }
 
-export default HighScores
+export default Saves

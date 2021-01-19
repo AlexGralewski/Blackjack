@@ -57,6 +57,7 @@ function BetSelection(props) {
       </div>
       <div className="bet-balance-information">
         <p>Your bet: {balance >= bet && bet >= 0 ? `${bet}$`: "Invalid bet"}</p>
+        <p>Possible winnings: {balance >= bet && bet >= 0 ? `${bet * 2.5}$`: "Invalid bet"}</p>
         <p>Your balance: {balance}$</p>
         <p>Balance after bet: {balance >= bet && bet >= 0 ? `${balance-bet}$`: "Invalid bet"}</p>
       </div>

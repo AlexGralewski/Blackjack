@@ -3,6 +3,7 @@ body, button, input {
   font-family: 'Bebas Neue', cursive; 
 }
 
+//main styling of buttons
 button, input {
   background-color: black;
   color: white;
@@ -35,13 +36,15 @@ h1 {
 }
 
 .menu, .game, .name-input, .high-scores, .rules, .game-table, .neutral, 
-.bet-selection, .bet-balance-information, .custom-bet, .dealer-side, .player-side{
+.bet-selection, .bet-balance-information, .custom-bet, .dealer-side, .player-side,
+.end-round-popup{
   display: flex;
   flex-direction:column;
   justify-content: center;
 }
 
 
+//card styling
 .card {
   height: 100px;
   border-radius: 10px;
@@ -59,6 +62,7 @@ h1 {
   width: 72px;
 }
 
+//menu screen styling
 .menu {
   align-items: center;
   .menu-title {
@@ -89,6 +93,8 @@ h1 {
   }
 }
 
+
+//bet selection styling
 .bet-selection {
   min-width: 400px;
   align-items: center;
@@ -211,6 +217,18 @@ h1 {
           left: -6px;
         }
       }
+      .quit-save-buttons {
+        display: flex;
+        a {
+          margin: 0 20px;
+          display: flex;
+          
+          button {
+            width: 150px;
+            height: 120px;
+          }
+        }
+      }
     }
   }
   .hit-stand-double-buttons {
@@ -227,19 +245,24 @@ h1 {
     }
   }
 
-  .quit-save-buttons {
+  .end-round-popup {
     position: absolute;
-    top: 5%;
-    right: 5%;
-    a {
-      margin: 0 20px;
-      button {
-        width: 150px;
-      }
+    border: 2px white solid;
+    border-radius: 10px;
+    align-items: center;
+    text-align: center;
+    min-width: 300px;
+    width: 30%;
+    min-height: 300px;
+    height: 30%;
+    background-color: black;
+    button {
+      margin: 10px;
     }
   }
 }
 
+//name input page styling
 .name-input {
   align-items: center;
   width: 300px;
@@ -259,6 +282,7 @@ h1 {
   }
 }
 
+//rules, high score, credits pages styling
 .rules, .high-scores, .credits {
   font-size: 2rem;
   align-items: center;
@@ -267,3 +291,12 @@ h1 {
   }
 }
 
+//footer styling
+footer {
+  position: fixed;
+  width: 100%;
+  text-align: center;
+  bottom: 0;
+  padding: 20px;
+
+}
