@@ -10,7 +10,6 @@ function RoundHistory(props) {
     <div className="round-history">
       <h1>Round History</h1>
       <div className="round-history-list">
-        
         {roundHistory.map(object => (
           <div className="round-history-list-item">
             <h2>Round: {object.roundCount}</h2>

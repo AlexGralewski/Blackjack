@@ -28,16 +28,45 @@ class App extends React.Component {
       endRoundPopup: "none", //determines if end-round popup is displayed
       endGamePopup: "none", //determines if end-round popup is displayed
       roundResult: "",  // tells if current round was "won", "drew", "lost"
-      roundHistory: [] //array containing data about previous hands
+      roundHistory: [], //array containing data about previous hands
+      scoreBoard: [] //array containing high scores, loaded upon choosing option high scores in main menu
     }
     this.shuffleCards = this.shuffleCards.bind(this)
     this.dealStartingHands = this.dealStartingHands.bind(this)
-    this.startNewGame = this.startNewGame.bind(this)
     this.confirmBet = this.confirmBet.bind(this)
     this.handleBetChange = this.handleBetChange.bind(this)
     this.dealCard = this.dealCard.bind(this)
   }
 
+  resetGameState = () => {
+    this.setState({
+      username: 'Player',
+      bet: 5, 
+      balance: 1000, 
+      stake: 0, 
+      playerHand: [], 
+      playerPoints: 0, 
+      dealerHand: [], 
+      dealerPoints: 0, 
+      deck: 'bhwcmpj3ltym', 
+      roundCount: 1, 
+      endRoundPopup: "none", 
+      endGamePopup: "none", 
+      roundResult: "",  
+      roundHistory: [],
+      scoreBoard: []
+    })
+  }
+
+  //handles change in input of bet
+  handleBetChange = e => {
+    const { name, value } = e.target
+    this.setState({
+      [name]: value
+    })
+  }
+
+  //handles "confirm bet" button click
   confirmBet = () => {
     const { bet, balance } = this.state
     if (bet > balance || bet <= 0) {
@@ -55,6 +84,7 @@ class App extends React.Component {
     }
   }
 
+  //shuffles cards, automatical on "confirm bet" button click
   shuffleCards = () => {
     fetch('https://deckofcardsapi.com/api/deck/bhwcmpj3ltym/shuffle/')
       .then(response => response.json())
@@ -65,14 +95,14 @@ class App extends React.Component {
       });
   }
 
-
-
+  //deals starting hands to player and dealer
   dealStartingHands = () => {
     this.dealCard('player')
     this.dealCard('dealer')
     this.dealCard('player')
   }
 
+  //deals cards (and adds points of the dealt card)
   dealCard = whichHand => {
     fetch(`https://deckofcardsapi.com/api/deck/${this.state.deck}/draw/?count=1`)
       .then(response => response.json())
@@ -105,10 +135,12 @@ class App extends React.Component {
       })
   }
 
+  //handles "hit" button click
   handleHit = () => {
     this.dealCard('player')
   }
 
+  //handles "doubledown" button click
   handleDoubleDown = () => {
     this.dealCard('player')
     this.setState(prevState => {
@@ -117,41 +149,10 @@ class App extends React.Component {
         balance: prevState.balance - prevState.bet,
         stake: prevState.bet * 5,
       })
-    })
+    }, this.dealerDraw())
   }
 
-  handleBetChange = e => {
-    const { name, value } = e.target
-    this.setState({
-      [name]: value
-    })
-  }
-
-  resetGameState = () => {
-    this.setState({
-      username: 'Player',
-      bet: 5,
-      balance: 1000,
-      stake: 0,
-      playerHand: [],
-      playerPoints: 0,
-      dealerHand: [],
-      dealerPoints: 0,
-      deck: 'bhwcmpj3ltym',
-      roundCount: 1,
-
-    })
-  }
-
-  startNewGame = () => {
-    this.setState({
-      username: 'Player',
-      bet: 5,
-      balance: 1000,
-      roundCount: 1,
-    })
-  }
-
+  //draws cards for dealer after player chose to "stand" or "double down"
   dealerDraw = () => {
     if (this.state.playerPoints > 21) {
       this.roundEnd()
@@ -181,9 +182,10 @@ class App extends React.Component {
     }
   }
 
+  //counts dealer card points after drawing
   countDealerPoints = () => {
     setTimeout(() => {
-      if (this.state.dealerPoints < 17 && this.state.dealerPoints < this.state.playerPoints) {
+      if (this.state.dealerPoints < 17 && this.state.dealerPoints <= this.state.playerPoints) {
         this.dealerDraw()
       } else {
         this.roundEnd()
@@ -191,6 +193,7 @@ class App extends React.Component {
     }, 1000)
   }
 
+  //round end event
   roundEnd = () => {
     const { playerPoints, dealerPoints } = this.state
     this.saveRoundHistory()
@@ -228,6 +231,7 @@ class App extends React.Component {
     })
   }
 
+  //saves rounds history
   saveRoundHistory = () => {
     this.setState(prevState => {
       return({
@@ -242,6 +246,7 @@ class App extends React.Component {
     })
   }
 
+  //handles click of "next round" button
   nextRound = () => {
     this.setState(prevState => {
       return ({
@@ -255,20 +260,23 @@ class App extends React.Component {
     })
   }
 
+  //end game event
   gameEnd = () => {
     this.setState({
       endGamePopup: "flex"
     })
   }
 
+  //handles "save game" button click
   saveGame = () => {
     let save = { username: this.state.username, balance: this.state.balance, round: this.state.roundCount }
     localStorage.setItem('save', JSON.stringify(save))
   }
 
+  //loads last save
   loadSave = () => {
     let save = localStorage.getItem('save')
-    save = JSON.parse(save);
+    save = JSON.parse(save)
     console.log(save)
     if (save === null) {
       return
@@ -279,28 +287,60 @@ class App extends React.Component {
         roundCount: save.round
       })
     }
-
   }
 
-  saveResult = () => {
-    let save = { username: this.state.username, balance: this.state.balance, round: this.state.roundCount }
-    localStorage.setItem('save', JSON.stringify(save))
+  //saves game score after game ended (on button click)
+  saveGameScore = () => {
+    let scores = localStorage.getItem('scores')
+    scores = JSON.parse(scores)
+    console.log(scores)
+    if (scores === null) {
+      scores = [{username: this.state.username, score: this.state.balance}]
+    } else {
+      scores.push({username: this.state.username, score: this.state.balance})
+      function compareScores( a, b ) {
+        if ( a.score < b.score ){
+          return 1;
+        }
+        if ( a.score > b.score ){
+          return -1;
+        }
+        return 0;
+      } 
+      scores.sort( compareScores );
+      localStorage.setItem('scores', JSON.stringify(scores))
+    }
+    
+
+    localStorage.setItem('scores', JSON.stringify(scores))
   }
 
+  //loads scoreboard
+  loadScoreboard = () => {
+    let scores = localStorage.getItem('scores')
+    scores = JSON.parse(scores)
+    this.setState({
+      scoreBoard: scores
+    })
+  }
 
+  componentWillUnmount() {
+    this.saveGame()
+  }
+  
   render() {
     const { saveGame, nextRound, resetGameState, dealStartingHands,
-      handleBetChange, startNewGame, confirmBet, handleHit,
-      handleDoubleDown, dealerDraw, loadSave, } = this
+      handleBetChange, confirmBet, handleHit,
+      handleDoubleDown, dealerDraw, loadSave, loadScoreboard, saveGameScore} = this
     const { endGamePopup, endRoundPopup, username, bet, balance, stake,
       playerHand, playerPoints, dealerHand, dealerPoints, roundCount, roundResult, 
-      roundHistory} = this.state
+      roundHistory, scoreBoard} = this.state
     return (
       <Router>
         <Route exact path="/" render={() => <Menu
-          startNewGame={startNewGame}
+          resetGameState={resetGameState}
           loadSave={loadSave}
-          resetGame
+          loadScoreboard={loadScoreboard}
         />} />
         <Route exact path="/username" render={() => <NameInput
           changeName={handleBetChange}
@@ -326,18 +366,20 @@ class App extends React.Component {
           doubledown={handleDoubleDown}
           stand={dealerDraw}
           roundCount={roundCount}
-          quitAndReset={resetGameState}
           endRoundPopup={endRoundPopup}
           endGamePopup={endGamePopup}
           nextRound={nextRound}
           saveGame={saveGame}
           roundResult={roundResult}
           roundHistory={roundHistory}
+          saveGameScore={saveGameScore}
         />} />
         <Route exact path="/roundhistory" render={() => <RoundHistory 
           roundHistory={roundHistory}
           />} />
-        <Route exact path="/highscores" render={() => <HighScores />} />
+        <Route exact path="/highscores" render={() => <HighScores 
+          scoreBoard={scoreBoard}
+          />} />
         <Route exact path="/rules" render={() => <Rules />} />
         <Route exact path="/credits" render={() => <Credits />} />
 

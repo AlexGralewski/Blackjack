@@ -4,9 +4,9 @@ import { Link } from "react-router-dom"
 import CardDisplay from "./CardDisplay"
 
 function PlayGame(props) {
-  const { saveGame, nextRound, endGamePopup, endRoundPopup, quitAndReset,
+  const { saveGame, nextRound, endGamePopup, endRoundPopup,
     bet, stake, balance, dealerPoints, username, playerPoints, hit, playerHand,
-    dealerHand, roundCount, doubledown, stand, roundResult, roundHistory } = props
+    dealerHand, roundCount, doubledown, stand, roundResult, roundHistory, saveGameScore } = props
   return (
     <div className="game">
       <div className="game-table" >
@@ -33,12 +33,12 @@ function PlayGame(props) {
                 Round history
               </button>
             </Link>
-            <Link to="/">
+            <Link to="/" style={balance === 0 ? { display: "none" } : { display: "block" }}>
               <button>
                 Save and Quit
               </button>
             </Link>
-            <Link to="/" onClick={quitAndReset}>
+            <Link to="/">
               <button>
                 Quit
               </button>
@@ -74,7 +74,7 @@ function PlayGame(props) {
         <input
           type="button"
           value="Double Down"
-          style={playerPoints >= 21 ? { display: "none" } : { display: "block" }}
+          style={playerPoints >= 21 || balance<bet ? { display: "none" } : { display: "block" }}
           onClick={() => {
             doubledown()
           }
@@ -87,7 +87,7 @@ function PlayGame(props) {
           }
           } />
       </div>
-      <div className="end-round-popup" style={{ display: endRoundPopup }}>
+      <div className="popup" style={{ display: endRoundPopup }}>
         You {roundResult} round {roundCount}
           <div className="end-round-buttons">
           <Link to="/betselection" onClick={nextRound}>
@@ -97,17 +97,17 @@ function PlayGame(props) {
           </Link>
         </div>
       </div>
-      <div className="end-round-popup" style={{ display: endGamePopup }}>
+      <div className="popup" style={{ display: endGamePopup }}>
+        Game Over
         <div className="end-game-buttons">
-          Game Over
-          <Link to="/">
+          <Link to="/" onClick={saveGameScore}>
             <button>
-              FFFFF
+              Save score and quit
             </button>
           </Link>
           <Link to="/">
             <button>
-              FFFFF
+              Quit
             </button>
           </Link>
         </div>

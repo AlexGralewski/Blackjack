@@ -8,10 +8,12 @@ function Rules() {
     <div className="rules">
       <h1>Rules</h1>
       <ul>
-        <li>Single player vs dealer</li>
+        <li>Single player vs automated dealer</li>
         <li>Decks used: 6</li>
-        <li>Game length: 5 rounds</li>
-        <li>Game length: 5 rounds</li>
+        <li>Starting balance: 1000$</li>
+        <li>Game length: 5 rounds (or loss of all the funds)</li>
+        <li>Dealer will stand if he has more points than 17 or the player</li>
+        <li>Ace is counted as 1 or 11 depending what is better for the player</li>
       </ul>
       <Link to="/">
         <button>
