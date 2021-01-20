@@ -27,7 +27,7 @@ function PlayGame(props) {
             <p>Stake: {stake} </p>
             <p>Balance: {balance}</p>
           </div>
-          <div className="quit-save-buttons" onClick={saveGame}>
+          <div className="table-buttons" onClick={saveGame}>
             <Link to="/roundhistory" onClick={()=> {console.log(roundHistory)}}>
               <button>
                 Round history

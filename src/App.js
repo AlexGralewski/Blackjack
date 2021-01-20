@@ -41,18 +41,18 @@ class App extends React.Component {
   resetGameState = () => {
     this.setState({
       username: 'Player',
-      bet: 5, 
-      balance: 1000, 
-      stake: 0, 
-      playerHand: [], 
-      playerPoints: 0, 
-      dealerHand: [], 
-      dealerPoints: 0, 
-      deck: 'bhwcmpj3ltym', 
-      roundCount: 1, 
-      endRoundPopup: "none", 
-      endGamePopup: "none", 
-      roundResult: "",  
+      bet: 5,
+      balance: 1000,
+      stake: 0,
+      playerHand: [],
+      playerPoints: 0,
+      dealerHand: [],
+      dealerPoints: 0,
+      deck: 'bhwcmpj3ltym',
+      roundCount: 1,
+      endRoundPopup: "none",
+      endGamePopup: "none",
+      roundResult: "",
       roundHistory: [],
       scoreBoard: []
     })
@@ -222,7 +222,7 @@ class App extends React.Component {
         if (this.state.balance === 0) {
           this.gameEnd()
         }
-        
+
         return ({
           endRoundPopup: "flex",
           roundResult: winlosedraw
@@ -234,7 +234,7 @@ class App extends React.Component {
   //saves rounds history
   saveRoundHistory = () => {
     this.setState(prevState => {
-      return({
+      return ({
         roundHistory: [...prevState.roundHistory, {
           roundCount: this.state.roundCount,
           playerHand: this.state.playerHand,
@@ -295,22 +295,22 @@ class App extends React.Component {
     scores = JSON.parse(scores)
     console.log(scores)
     if (scores === null) {
-      scores = [{username: this.state.username, score: this.state.balance}]
+      scores = [{ username: this.state.username, score: this.state.balance }]
     } else {
-      scores.push({username: this.state.username, score: this.state.balance})
-      function compareScores( a, b ) {
-        if ( a.score < b.score ){
+      scores.push({ username: this.state.username, score: this.state.balance })
+      function compareScores(a, b) {
+        if (a.score < b.score) {
           return 1;
         }
-        if ( a.score > b.score ){
+        if (a.score > b.score) {
           return -1;
         }
         return 0;
-      } 
-      scores.sort( compareScores );
+      }
+      scores.sort(compareScores);
       localStorage.setItem('scores', JSON.stringify(scores))
     }
-    
+
 
     localStorage.setItem('scores', JSON.stringify(scores))
   }
@@ -324,17 +324,18 @@ class App extends React.Component {
     })
   }
 
+  //saves the game on exiting the app
   componentWillUnmount() {
     this.saveGame()
   }
-  
+
   render() {
     const { saveGame, nextRound, resetGameState, dealStartingHands,
       handleBetChange, confirmBet, handleHit,
-      handleDoubleDown, dealerDraw, loadSave, loadScoreboard, saveGameScore} = this
+      handleDoubleDown, dealerDraw, loadSave, loadScoreboard, saveGameScore } = this
     const { endGamePopup, endRoundPopup, username, bet, balance, stake,
-      playerHand, playerPoints, dealerHand, dealerPoints, roundCount, roundResult, 
-      roundHistory, scoreBoard} = this.state
+      playerHand, playerPoints, dealerHand, dealerPoints, roundCount, roundResult,
+      roundHistory, scoreBoard } = this.state
     return (
       <Router>
         <Route exact path="/" render={() => <Menu
@@ -374,14 +375,15 @@ class App extends React.Component {
           roundHistory={roundHistory}
           saveGameScore={saveGameScore}
         />} />
-        <Route exact path="/roundhistory" render={() => <RoundHistory 
+        <Route exact path="/roundhistory" render={() => <RoundHistory
           roundHistory={roundHistory}
-          />} />
-        <Route exact path="/highscores" render={() => <HighScores 
+        />} />
+        <Route exact path="/highscores" render={() => <HighScores
           scoreBoard={scoreBoard}
-          />} />
+        />} />
         <Route exact path="/rules" render={() => <Rules />} />
         <Route exact path="/credits" render={() => <Credits />} />
+
 
       </Router>
     )

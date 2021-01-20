@@ -6,6 +6,7 @@ JavaScript, React, React router, create-react-app, CSS(Sass), HTML, [Deck of Car
 
 ## Features
 - Save game at any time (load last save)
+- Game saves automatically upon exiting the app
 - Save your score upon game completion
 - High scores ranking
 - Display round history during the game

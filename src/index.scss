@@ -239,8 +239,9 @@ h2 {
           left: -6px;
         }
       }
-      .quit-save-buttons {
+      .table-buttons {
         display: flex;
+        align-items: center;
         a {
           margin: 0 20px;
           display: flex;
@@ -349,5 +350,45 @@ footer {
         justify-content: center;
       }
     }
+  }
+}
+
+@media screen and (max-width: 1150px) {
+  .game {
+    font-size: 2.5vw;
+    .game-table {
+      width: 100vw;
+      border-radius: unset;
+    }
+    .table-buttons {
+      a {
+        margin:0 2px;
+        width: 10vw;
+        height: 10vw;
+        button{
+          padding: 0;
+          font-size: 2.5vw;
+          width: 10vw;
+          height: 10vw;
+          margin: 0;
+      }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .menu{
+    .menu-title{
+      font-size: 20vw;
+    }
+    .menu-item {
+      font-size: 6vw;
+    }
+    .reset-game {
+      font-size: 3vw;
+    }
+
+
   }
 }

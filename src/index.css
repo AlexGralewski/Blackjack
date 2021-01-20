@@ -307,20 +307,23 @@ h2 {
   left: -6px;
 }
 
-.game .game-table .neutral .quit-save-buttons {
+.game .game-table .neutral .table-buttons {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-.game .game-table .neutral .quit-save-buttons a {
+.game .game-table .neutral .table-buttons a {
   margin: 0 20px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
 
-.game .game-table .neutral .quit-save-buttons a button {
+.game .game-table .neutral .table-buttons a button {
   width: 150px;
   height: 120px;
 }
@@ -443,5 +446,39 @@ footer {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+
+@media screen and (max-width: 1150px) {
+  .game {
+    font-size: 2.5vw;
+  }
+  .game .game-table {
+    width: 100vw;
+    border-radius: unset;
+  }
+  .game .table-buttons a {
+    margin: 0 2px;
+    width: 10vw;
+    height: 10vw;
+  }
+  .game .table-buttons a button {
+    padding: 0;
+    font-size: 2.5vw;
+    width: 10vw;
+    height: 10vw;
+    margin: 0;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .menu .menu-title {
+    font-size: 20vw;
+  }
+  .menu .menu-item {
+    font-size: 6vw;
+  }
+  .menu .reset-game {
+    font-size: 3vw;
+  }
 }
 /*# sourceMappingURL=index.css.map */
