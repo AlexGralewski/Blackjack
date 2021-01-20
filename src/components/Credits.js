@@ -6,6 +6,7 @@ import Footer from "./Footer"
 function Credits(props) {
   return(
     <div className="credits">
+      <h1>Credits</h1>
       <ul>
         <li>Deck of cards API: <a href="https://github.com/crobertsbmw">Chase Roberts</a></li>
         <li>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></li>

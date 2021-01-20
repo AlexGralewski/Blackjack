@@ -41,14 +41,21 @@ body {
 
 h1 {
   font-size: 50px;
-  letter-spacing: 5px;
+  letter-spacing: 4px;
+  text-align: center;
+  margin: 0;
+}
+
+h2 {
+  font-size: 40px;
+  letter-spacing: 2px;
   text-align: center;
   margin: 0;
 }
 
 .menu, .game, .name-input, .high-scores, .rules, .game-table, .neutral,
 .bet-selection, .bet-balance-information, .custom-bet, .dealer-side, .player-side,
-.end-round-popup {
+.end-round-popup, .round-history, .round-history-list, .round-history-list-item {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -401,5 +408,37 @@ footer {
   bottom: 0;
   padding: 20px;
   background-color: black;
+}
+
+.round-history {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 25px;
+}
+
+.round-history .round-history-list {
+  margin: 20px;
+}
+
+.round-history .round-history-list .round-history-list-item {
+  border: white solid 2px;
+  border-radius: 20px;
+  padding: 10px 30px;
+  margin: 5px 0;
+  text-align: center;
+}
+
+.round-history .round-history-list .round-history-list-item div {
+  margin: 5px 0;
+}
+
+.round-history .round-history-list .round-history-list-item .hand {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 /*# sourceMappingURL=index.css.map */

@@ -6,6 +6,7 @@ import Footer from "./Footer"
 function Rules() {
   return (
     <div className="rules">
+      <h1>Rules</h1>
       <ul>
         <li>Single player vs dealer</li>
         <li>Decks used: 6</li>

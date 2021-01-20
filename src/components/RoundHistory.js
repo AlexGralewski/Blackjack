@@ -8,13 +8,15 @@ function RoundHistory(props) {
 
   return (
     <div className="round-history">
+      <h1>Round History</h1>
       <div className="round-history-list">
+        
         {roundHistory.map(object => (
           <div className="round-history-list-item">
-            <div>Round: {object.roundCount}</div>
-            <div>{object.playerHand.map(card => (<CardDisplay card={card} />))}</div>
+            <h2>Round: {object.roundCount}</h2>
+            <div className="hand">{object.playerHand.map(card => (<CardDisplay card={card} />))}</div>
             <div>Player points: {object.playerPoints}</div>
-            <div>{object.dealerHand.map(card => (<CardDisplay card={card} />))}</div>
+            <div className="hand">{object.dealerHand.map(card => (<CardDisplay card={card} />))}</div>
             <div>Dealer points: {object.dealerPoints}</div>
           </div>
         ))}
