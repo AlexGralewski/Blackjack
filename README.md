@@ -14,4 +14,6 @@ JavaScript, React, React router, create-react-app, CSS(Sass), HTML, [Deck of Car
 ## Rules of the game
 - Single player vs automated dealer
 - Decks used: 6
-- Game lasts
+- Game lasts 5 rounds or until player runs out of credits
+- Round possible winnings are always 1.5x bet
+- Game actions: hit - draw another card, double down - draw just one more card and stand, <br/>stand - wait for dealers turn
