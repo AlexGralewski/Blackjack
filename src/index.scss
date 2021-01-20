@@ -13,6 +13,11 @@ button, input {
   padding: 20px;
   text-align: center;
 }
+input:hover, button:hover {
+  background-color: white;
+  color: black;
+  border-radius: 15px;
+}
 
 a {
   text-decoration: none;
@@ -86,9 +91,10 @@ h1 {
     margin: 10px;
     padding: 1.5rem;
     color: white;
-    .new-game:hover {
-      border-color: red;
-    }
+  }
+  .menu-item:hover {
+    background-color: white;
+    color: black;
   }
   .reset-game {
     position: fixed;
@@ -96,6 +102,10 @@ h1 {
     right: 5%;
     color: red;
     border-color: red;
+  }
+  .reset-game:hover {
+    color: black;
+    background-color: red;
   }
 }
 

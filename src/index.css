@@ -13,6 +13,12 @@ button, input {
   text-align: center;
 }
 
+input:hover, button:hover {
+  background-color: white;
+  color: black;
+  border-radius: 15px;
+}
+
 a {
   text-decoration: none;
 }
@@ -106,8 +112,9 @@ h1 {
   color: white;
 }
 
-.menu .menu-item .new-game:hover {
-  border-color: red;
+.menu .menu-item:hover {
+  background-color: white;
+  color: black;
 }
 
 .menu .reset-game {
@@ -116,6 +123,11 @@ h1 {
   right: 5%;
   color: red;
   border-color: red;
+}
+
+.menu .reset-game:hover {
+  color: black;
+  background-color: red;
 }
 
 .bet-selection {

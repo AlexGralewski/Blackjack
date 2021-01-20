@@ -6,7 +6,7 @@ import CardDisplay from "./CardDisplay"
 function PlayGame(props) {
   const { saveGame, nextRound, endGamePopup, endRoundPopup, quitAndReset,
     bet, stake, balance, dealerPoints, username, playerPoints, hit, playerHand,
-    dealerHand, roundCount, doubledown, stand, roundResult } = props
+    dealerHand, roundCount, doubledown, stand, roundResult, roundHistory } = props
   return (
     <div className="game">
       <div className="game-table" >
@@ -28,6 +28,11 @@ function PlayGame(props) {
             <p>Balance: {balance}</p>
           </div>
           <div className="quit-save-buttons" onClick={saveGame}>
+            <Link to="/roundhistory" onClick={()=> {console.log(roundHistory)}}>
+              <button>
+                Round history
+              </button>
+            </Link>
             <Link to="/">
               <button>
                 Save and Quit
@@ -36,11 +41,6 @@ function PlayGame(props) {
             <Link to="/" onClick={quitAndReset}>
               <button>
                 Quit
-              </button>
-            </Link>
-            <Link to="/roundhistory">
-              <button>
-                Round history
               </button>
             </Link>
           </div>
@@ -100,10 +100,15 @@ function PlayGame(props) {
       <div className="end-round-popup" style={{ display: endGamePopup }}>
         <div className="end-game-buttons">
           Game Over
-            <Link to="/">
+          <Link to="/">
             <button>
               FFFFF
-              </button>
+            </button>
+          </Link>
+          <Link to="/">
+            <button>
+              FFFFF
+            </button>
           </Link>
         </div>
       </div>

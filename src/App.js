@@ -176,11 +176,12 @@ class App extends React.Component {
               dealerHand: [...prevState.dealerHand, data.cards[0].image,],
               dealerPoints: prevState.dealerPoints + total
             })
-          }, this.checkDealerPoints())
+          }, this.countDealerPoints())
         })
     }
   }
-  checkDealerPoints = () => {
+
+  countDealerPoints = () => {
     setTimeout(() => {
       if (this.state.dealerPoints < 17 && this.state.dealerPoints < this.state.playerPoints) {
         this.dealerDraw()
@@ -195,7 +196,7 @@ class App extends React.Component {
     this.saveRoundHistory()
     this.setState(prevState => {
       let winlosedraw
-      if (prevState.roundCount === 5 || this.state.balance === 0) {
+      if (prevState.roundCount === 5) {
         this.gameEnd()
       }
       if ((playerPoints > dealerPoints && playerPoints < 22) || dealerPoints > 21) {
@@ -208,13 +209,17 @@ class App extends React.Component {
       } else if (playerPoints === dealerPoints) {
         winlosedraw = "drew"
         return ({
-          balance: prevState.balance + prevState.bet,
+          balance: prevState.balance + Number(prevState.bet),
           endRoundPopup: "flex",
           roundResult: winlosedraw
 
         })
       } else {
         winlosedraw = "lost"
+        if (this.state.balance === 0) {
+          this.gameEnd()
+        }
+        
         return ({
           endRoundPopup: "flex",
           roundResult: winlosedraw
@@ -227,7 +232,7 @@ class App extends React.Component {
     this.setState(prevState => {
       return({
         roundHistory: [...prevState.roundHistory, {
-          round: this.state.roundCount,
+          roundCount: this.state.roundCount,
           playerHand: this.state.playerHand,
           playerPoints: this.state.playerPoints,
           dealerHand: this.state.dealerHand,
@@ -240,7 +245,6 @@ class App extends React.Component {
   nextRound = () => {
     this.setState(prevState => {
       return ({
-        balance: prevState.balance + prevState.stake,
         playerHand: [],
         playerPoints: 0,
         dealerHand: [],
@@ -266,11 +270,16 @@ class App extends React.Component {
     let save = localStorage.getItem('save')
     save = JSON.parse(save);
     console.log(save)
-    this.setState({
-      username: save.username,
-      balance: save.balance,
-      roundCount: save.round
-    })
+    if (save === null) {
+      return
+    } else {
+      this.setState({
+        username: save.username,
+        balance: save.balance,
+        roundCount: save.round
+      })
+    }
+
   }
 
   saveResult = () => {
@@ -278,14 +287,11 @@ class App extends React.Component {
     localStorage.setItem('save', JSON.stringify(save))
   }
 
-  resetGame = () => {
-    localStorage.clear()
-  }
 
   render() {
     const { saveGame, nextRound, resetGameState, dealStartingHands,
       handleBetChange, startNewGame, confirmBet, handleHit,
-      handleDoubleDown, dealerDraw, loadSave, resetGame } = this
+      handleDoubleDown, dealerDraw, loadSave, } = this
     const { endGamePopup, endRoundPopup, username, bet, balance, stake,
       playerHand, playerPoints, dealerHand, dealerPoints, roundCount, roundResult, 
       roundHistory} = this.state
@@ -326,13 +332,14 @@ class App extends React.Component {
           nextRound={nextRound}
           saveGame={saveGame}
           roundResult={roundResult}
+          roundHistory={roundHistory}
         />} />
-        <Route exact path="/highscores" render={() => <HighScores />} />
-        <Route exact path="/rules" render={() => <Rules />} />
-        <Route exact path="/credits" render={() => <Credits />} />
         <Route exact path="/roundhistory" render={() => <RoundHistory 
           roundHistory={roundHistory}
           />} />
+        <Route exact path="/highscores" render={() => <HighScores />} />
+        <Route exact path="/rules" render={() => <Rules />} />
+        <Route exact path="/credits" render={() => <Credits />} />
 
       </Router>
     )
