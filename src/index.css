@@ -311,21 +311,23 @@ h2 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  height: 100%;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
 }
 
 .game .game-table .neutral .table-buttons a {
-  margin: 0 20px;
+  margin: 0 10px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  height: 120px;
 }
 
 .game .game-table .neutral .table-buttons a button {
   width: 150px;
-  height: 120px;
+  height: 100%;
 }
 
 .game .hit-stand-double-buttons {
@@ -456,17 +458,13 @@ footer {
     width: 100vw;
     border-radius: unset;
   }
-  .game .table-buttons a {
+  .game .game-table .table-buttons a {
     margin: 0 2px;
     width: 10vw;
-    height: 10vw;
   }
-  .game .table-buttons a button {
+  .game .game-table .table-buttons a button {
     padding: 0;
     font-size: 2.5vw;
-    width: 10vw;
-    height: 10vw;
-    margin: 0;
   }
 }
 

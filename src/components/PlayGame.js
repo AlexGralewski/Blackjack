@@ -33,7 +33,7 @@ function PlayGame(props) {
                 Round history
               </button>
             </Link>
-            <Link to="/" style={balance === 0 ? { display: "none" } : { display: "block" }}>
+            <Link to="/" style={balance === 0 ? { display: "none" } : { display: "flex" }}>
               <button>
                 Save and Quit
               </button>
