@@ -46,7 +46,7 @@ h2 {
   margin: 0;
 }
 
-.menu, .game, .name-input, .high-scores, .rules, .credits, .game-table, .neutral, 
+.menu, .game, .name-input, .high-scores, .rules, .credits, .saves, .game-table, .neutral, 
 .bet-selection, .bet-balance-information, .custom-bet, .dealer-side, .player-side,
 .popup, .round-history, .round-history-list, .round-history-list-item{
   display: flex;
@@ -166,9 +166,11 @@ h2 {
   .bet-link-buttons {
     width: 100%;
     display: flex;
-    justify-content: space-around;
+    flex-wrap: wrap;
+    justify-content: center;
     button {
-      width: 140px;
+      min-width: 140px;
+      margin: 10px
     }
   }
 }
@@ -187,8 +189,7 @@ h2 {
     border: 5px solid white;
     border-radius: 40px;
     
-    hr {
-      
+    hr {     
       width:80%;
       height: 2px;
       background-color: white;
@@ -270,6 +271,7 @@ h2 {
   }
 
   .popup {
+    padding: 0 30px;
     position: absolute;
     border: 2px white solid;
     border-radius: 10px;
@@ -306,8 +308,8 @@ h2 {
   }
 }
 
-//rules, high score, credits pages styling
-.rules, .high-scores, .credits {
+//rules, high score, credits, saves pages styling
+.rules, .high-scores, .credits, .saves{
   font-size: 2rem;
   align-items: center;
   button {
@@ -349,6 +351,34 @@ footer {
       .hand {
         display: flex;
         justify-content: center;
+      }
+    }
+  }
+}
+
+.saves {
+  .saves-list {
+    margin: 30px;
+    .save {
+      border: white solid 2px;
+      border-radius: 10px;
+      margin: 10px;
+      padding: 20px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      div {
+        margin: 0 10px;
+      }
+      .save-id {
+        font-size: 300%;
+      }
+      .save-text {
+        text-align: center;
+        .save-username {
+          font-size: 200%;
+        }
       }
     }
   }

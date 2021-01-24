@@ -2,7 +2,7 @@ import React from "react"
 import {Link} from "react-router-dom"
 
 function BetSelection(props) {
-  const { changeBet, confirmBet, bet, balance } = props
+  const { changeBet, confirmBet, bet, balance, saveGame, roundCount } = props
   return(
     <div className="bet-selection">
       <h1>BET</h1> 
@@ -64,12 +64,17 @@ function BetSelection(props) {
       <div className="bet-link-buttons">
         <Link to="/">
           <button>
-            Back
+            Quit
           </button>
         </Link>
         <Link to="/game" style={bet > 0 && balance >= bet ? { display:"flex"} : { display:"none"}}>
           <button onClick={confirmBet}>
             Confirm
+          </button>
+        </Link>
+        <Link to="/" onClick={() => saveGame()} style={roundCount > 1 ? { display: "flex" } : { display: "none" }}>
+          <button>
+            Save and Quit
           </button>
         </Link>
       </div>

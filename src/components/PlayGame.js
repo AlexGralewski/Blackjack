@@ -6,7 +6,8 @@ import CardDisplay from "./CardDisplay"
 function PlayGame(props) {
   const { saveGame, nextRound, endGamePopup, endRoundPopup,
     bet, stake, balance, dealerPoints, username, playerPoints, hit, playerHand,
-    dealerHand, roundCount, doubledown, stand, roundResult, roundHistory, saveGameScore } = props
+    dealerHand, roundCount, doubledown, stand, roundResult, roundHistory, saveGameScore, 
+    resetGameState } = props
   return (
     <div className="game">
       <div className="game-table" >
@@ -27,18 +28,18 @@ function PlayGame(props) {
             <p>Stake: {stake} </p>
             <p>Balance: {balance}</p>
           </div>
-          <div className="table-buttons" onClick={saveGame}>
+          <div className="table-buttons">
             <Link to="/roundhistory" onClick={()=> {console.log(roundHistory)}}>
               <button>
                 Round history
               </button>
             </Link>
-            <Link to="/" style={balance === 0 ? { display: "none" } : { display: "flex" }}>
+            <Link to="/" onClick={saveGame} style={balance === 0 ? { display: "none" } : { display: "flex" }}>
               <button>
                 Save and Quit
               </button>
             </Link>
-            <Link to="/">
+            <Link to="/" onClick={() => {resetGameState()}}>
               <button>
                 Quit
               </button>
@@ -105,7 +106,7 @@ function PlayGame(props) {
               Save score and quit
             </button>
           </Link>
-          <Link to="/">
+          <Link to="/" onClick={() => {resetGameState()}}>
             <button>
               Quit
             </button>

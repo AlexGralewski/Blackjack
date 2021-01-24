@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom"
 import Menu from "./components/Menu"
 import BetSelection from "./components/BetSelection"
 import PlayGame from "./components/PlayGame"
+import Saves from "./components/Saves"
 import Rules from "./components/Rules"
 import Credits from "./components/Credits"
 import HighScores from "./components/HighScores"
@@ -29,7 +30,8 @@ class App extends React.Component {
       endGamePopup: "none", //determines if end-round popup is displayed
       roundResult: "",  // tells if current round was "won", "drew", "lost"
       roundHistory: [], //array containing data about previous hands
-      scoreBoard: [] //array containing high scores, loaded upon choosing option high scores in main menu
+      scoreBoard: [], //array containing high scores, loaded upon choosing option high scores in main menu
+      saves: [] //array containing saves
     }
     this.shuffleCards = this.shuffleCards.bind(this)
     this.dealStartingHands = this.dealStartingHands.bind(this)
@@ -267,27 +269,42 @@ class App extends React.Component {
     })
   }
 
-  //handles "save game" button click
+  //saves current state of the game
   saveGame = () => {
-    let save = { username: this.state.username, balance: this.state.balance, round: this.state.roundCount }
-    localStorage.setItem('save', JSON.stringify(save))
+    let saves = localStorage.getItem('saves')
+    saves = JSON.parse(saves)
+    if (saves === null) {
+      saves = [{ username: this.state.username, balance: this.state.balance, round: this.state.roundCount }]
+    } else {
+      saves.push({ username: this.state.username, balance: this.state.balance, round: this.state.roundCount })
+    }
+
+    localStorage.setItem('saves', JSON.stringify(saves))
   }
 
-  //loads last save
-  loadSave = () => {
-    let save = localStorage.getItem('save')
-    save = JSON.parse(save)
-    console.log(save)
-    if (save === null) {
-      return
-    } else {
-      this.setState({
-        username: save.username,
-        balance: save.balance,
-        roundCount: save.round
-      })
-    }
+  //loads saves page
+  loadSaves = () => {
+    let allSaves = localStorage.getItem('saves')
+    allSaves = JSON.parse(allSaves)
+    this.setState({
+      saves: allSaves
+    })
   }
+
+  //loads save chosen by user, deletes that save from storage
+  loadChosenSave = (saveIndex) => {
+    let allSaves = [...this.state.saves]
+    allSaves.splice(saveIndex, 1)
+    localStorage.setItem('saves', JSON.stringify(allSaves))
+    this.setState(prevState => {
+      return({
+        username: prevState.saves[saveIndex].username,
+        balance: prevState.saves[saveIndex].balance,
+        roundCount: prevState.saves[saveIndex].round,
+      })
+    })
+  }
+
 
   //saves game score after game ended (on button click)
   saveGameScore = () => {
@@ -331,16 +348,16 @@ class App extends React.Component {
 
   render() {
     const { saveGame, nextRound, resetGameState, dealStartingHands,
-      handleBetChange, confirmBet, handleHit,
-      handleDoubleDown, dealerDraw, loadSave, loadScoreboard, saveGameScore } = this
+      handleBetChange, confirmBet, handleHit, loadChosenSave,
+      handleDoubleDown, dealerDraw, loadSaves, loadScoreboard, saveGameScore } = this
     const { endGamePopup, endRoundPopup, username, bet, balance, stake,
       playerHand, playerPoints, dealerHand, dealerPoints, roundCount, roundResult,
-      roundHistory, scoreBoard } = this.state
+      roundHistory, scoreBoard, saves } = this.state
     return (
       <Router>
         <Route exact path="/" render={() => <Menu
           resetGameState={resetGameState}
-          loadSave={loadSave}
+          loadSaves={loadSaves}
           loadScoreboard={loadScoreboard}
         />} />
         <Route exact path="/username" render={() => <NameInput
@@ -352,6 +369,8 @@ class App extends React.Component {
           bet={bet}
           balance={balance}
           confirmBet={confirmBet}
+          saveGame={saveGame}
+          roundCount={roundCount}
         />} />
         <Route exact path="/game" render={() => <PlayGame
           bet={bet}
@@ -374,6 +393,7 @@ class App extends React.Component {
           roundResult={roundResult}
           roundHistory={roundHistory}
           saveGameScore={saveGameScore}
+          resetGameState={resetGameState}
         />} />
         <Route exact path="/roundhistory" render={() => <RoundHistory
           roundHistory={roundHistory}
@@ -383,6 +403,10 @@ class App extends React.Component {
         />} />
         <Route exact path="/rules" render={() => <Rules />} />
         <Route exact path="/credits" render={() => <Credits />} />
+        <Route exact path="/loadgame" render={() => <Saves 
+          saves={saves}
+          loadChosenSave={loadChosenSave}
+          />} />
 
 
       </Router>

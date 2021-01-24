@@ -53,7 +53,7 @@ h2 {
   margin: 0;
 }
 
-.menu, .game, .name-input, .high-scores, .rules, .credits, .game-table, .neutral,
+.menu, .game, .name-input, .high-scores, .rules, .credits, .saves, .game-table, .neutral,
 .bet-selection, .bet-balance-information, .custom-bet, .dealer-side, .player-side,
 .popup, .round-history, .round-history-list, .round-history-list-item {
   display: -webkit-box;
@@ -208,12 +208,16 @@ h2 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .bet-selection .bet-link-buttons button {
-  width: 140px;
+  min-width: 140px;
+  margin: 10px;
 }
 
 .game {
@@ -349,6 +353,7 @@ h2 {
 }
 
 .game .popup {
+  padding: 0 30px;
   position: absolute;
   border: 2px white solid;
   border-radius: 10px;
@@ -394,14 +399,14 @@ h2 {
   width: 140px;
 }
 
-.rules, .high-scores, .credits {
+.rules, .high-scores, .credits, .saves {
   font-size: 2rem;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
 }
 
-.rules button, .high-scores button, .credits button {
+.rules button, .high-scores button, .credits button, .saves button {
   width: 140px;
 }
 
@@ -448,6 +453,42 @@ footer {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+
+.saves .saves-list {
+  margin: 30px;
+}
+
+.saves .saves-list .save {
+  border: white solid 2px;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.saves .saves-list .save div {
+  margin: 0 10px;
+}
+
+.saves .saves-list .save .save-id {
+  font-size: 300%;
+}
+
+.saves .saves-list .save .save-text {
+  text-align: center;
+}
+
+.saves .saves-list .save .save-text .save-username {
+  font-size: 200%;
 }
 
 @media screen and (max-width: 1150px) {

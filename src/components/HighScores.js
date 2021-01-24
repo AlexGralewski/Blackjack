@@ -9,7 +9,8 @@ function HighScores(props) {
     <div className="high-scores">
       <h1>High Scores</h1>
       <div className="high-score-list">
-        {scoreBoard.map((record,id )=> (
+        {scoreBoard === null || scoreBoard === [] ? "no saved scores yet" :
+        scoreBoard.map((record,id )=> (
           <div className="high-score-list-item">
             <div>{id+1}. {record.username}, {record.score}</div>
           </div>
