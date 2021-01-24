@@ -34,7 +34,7 @@ function PlayGame(props) {
                 Round history
               </button>
             </Link>
-            <Link to="/" onClick={saveGame} style={balance === 0 ? { display: "none" } : { display: "flex" }}>
+            <Link to="/" onClick={() => {saveGame()}} style={balance === 0 ? { display: "none" } : { display: "flex" }}>
               <button>
                 Save and Quit
               </button>

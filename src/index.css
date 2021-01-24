@@ -40,7 +40,7 @@ body {
 }
 
 h1 {
-  font-size: 50px;
+  font-size: 70px;
   letter-spacing: 4px;
   text-align: center;
   margin: 0;
@@ -55,7 +55,7 @@ h2 {
 
 .menu, .game, .name-input, .high-scores, .rules, .credits, .saves, .game-table, .neutral,
 .bet-selection, .bet-balance-information, .custom-bet, .dealer-side, .player-side,
-.popup, .round-history, .round-history-list, .round-history-list-item {
+.popup, .round-history, .round-history-list, .round-history-list-item, .high-score-list {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -399,19 +399,36 @@ h2 {
   width: 140px;
 }
 
-.rules, .high-scores, .credits, .saves {
+.rules, .credits, .saves {
   font-size: 2rem;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
 }
 
-.rules button, .high-scores button, .credits button, .saves button {
+.rules button, .credits button, .saves button {
   width: 140px;
+}
+
+.high-scores {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .high-scores .high-score-list {
   margin: 30px;
+  width: 60vw;
+  font-size: 50px;
+}
+
+.high-scores .high-score-list .high-score-list-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 footer {
