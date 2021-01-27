@@ -7,16 +7,16 @@ body, button, input {
 button, input {
   background-color: black;
   color: white;
-  border: 2px white solid;
-  border-radius: 15px;
-  font-size: 30px;
-  padding: 20px;
+  border: 0.1vw white solid;
+  border-radius: 0.5vw;
+  font-size: 1.5vw;
+  padding: 1vw;
   text-align: center;
 }
 input:hover, button:hover {
   background-color: white;
   color: black;
-  border-radius: 15px;
+
 }
 
 a {
@@ -34,17 +34,24 @@ body {
 }
 
 h1 {
-  font-size: 70px;
-  letter-spacing: 4px;
+  font-size: 3vw;
+  letter-spacing: 0.1vw;
   text-align: center;
   margin: 0;
 }
 h2 {
-  font-size: 40px;
-  letter-spacing: 2px;
+  font-size: 2vw;
+  letter-spacing: 0.1vw;
   text-align: center;
   margin: 0;
 }
+p, label {
+  font-size: 1.2vw;
+  letter-spacing: 0.05vw;
+  text-align: center;
+  margin: 0;
+}
+
 
 .menu, .game, .name-input, .high-scores, .rules, .credits, .saves, .game-table, .neutral, 
 .bet-selection, .bet-balance-information, .custom-bet, .dealer-side, .player-side,
@@ -57,20 +64,18 @@ h2 {
 
 //card styling
 .card {
-  height: 100px;
-  border-radius: 10px;
-  margin: 0 2px;
+  height: 5vw;
+  margin: 0 0.1vw;
   background-color: black;
-  color: white;
   img {
     height: 100%;
   }
 }
 
 .reversed {
-  border: 1px solid white;
-  border-radius: 5px;
-  width: 72px;
+  border: 0.1vw solid white;
+  border-radius: 0.2vw;
+  width: 3.5vw;
 }
 
 //menu screen styling
@@ -79,12 +84,12 @@ h2 {
   .menu-title {
     display:flex;
     justify-content: center;
-    margin: 10px;
+    margin: 0.1vw;
     color: #FFFFFF;
     background: #000000;
-    text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 10px #FFF, 0 0 15px #49ff18, 
-      0 0 20px #49FF18, 0 0 25px #49FF18, 0 0 55px #49FF18, 0 0 75px #49ff18;
-    font-size: 200px;
+    text-shadow: 0 0 0.3vw #FFF, 0 0 0.3vw #FFF, 0 0 0.3vw #FFF, 0 0 0.5vw #49ff18, 
+      0 0 0.7vw #49FF18, 0 0 0.7vw #49FF18, 0 0 1.5vw #49FF18, 0 0 1.8vw #49ff18;
+    font-size: 8vw;
     
   }
   a {
@@ -93,10 +98,11 @@ h2 {
   .menu-item {
     width: 100%;
     background: none;
-    font-size: 40px;
-    margin: 10px;
+    font-size: 1.8vw;
+    margin: 0.4vw;
     padding: 1.5rem;
     color: white;
+    height: 5vw;
   }
   .menu-item:hover {
     background-color: white;
@@ -118,13 +124,12 @@ h2 {
 
 //bet selection styling
 .bet-selection {
-  min-width: 400px;
   align-items: center;
   position: absolute;
   transform: translate(-50%, -50%);
   top: 50%;
   left:50%;
-  padding: 20px 40px;
+  padding: 1vw 2vw;
   background-color: black;
   border: 2px white solid;
   border-radius: 10px;   
@@ -136,12 +141,13 @@ h2 {
     input {
       width: 22%;
       margin: 2%;
-      border: white solid 2px;
-      border-radius: 50px;
-      font-size: 30px;
+      border: white solid 0.1vw;
+      border-radius: 10vw;
+      font-size: 1.5vw;
       background-color: black;
       color: white;
-      padding: 20px 10px;
+      padding: 0.8vw 0.4vw;
+      text-align: center;
     }
     input:hover {
       background-color: white;
@@ -150,14 +156,14 @@ h2 {
     
   }
   .custom-bet {
-    margin: 20px;
+    margin: 0.5vw;
     align-items: center;
     input {
       width: 100%;
     }
   }
   .bet-balance-information{
-    padding: 20px;
+    padding: 0.5vw;
     align-items: center;
     p {
       margin: 0;
@@ -169,8 +175,8 @@ h2 {
     flex-wrap: wrap;
     justify-content: center;
     button {
-      min-width: 140px;
-      margin: 10px
+      min-width: 3vw;
+      margin: 0.5vw;
     }
   }
 }
@@ -178,33 +184,30 @@ h2 {
 .game {
   width: 100vw;
   height: 100vh;
-  font-size: 30px;
+  font-size: 2vw;
   align-items: center;
 
   .game-table {
-    max-height: 2000px;
     height: 80vh;
-    max-width: 1500px;
-    width: 80vw;
-    border: 5px solid white;
-    border-radius: 40px;
-    
+    width: 70vw;
+    border: 0.1vw solid white;
+    border-radius: 1vw;
     hr {     
       width:80%;
-      height: 2px;
+      height: 0.1vw;
       background-color: white;
     }
     .dealer-side, .player-side {
       align-items: center;
       position: relative;
       height: 30%;     
-      padding: 20px;   
+      padding: 0.5vw;   
       .name-points {
         position: absolute;
         transform: translateY(-50%);
         top: 50%;
         left: 5%;
-        font-size: 50px;
+        font-size: 3vw;
         text-align: center;
       }
       .hand {
@@ -217,11 +220,8 @@ h2 {
       height: 40%;
       align-items: center;
       justify-content: space-between;
-      padding: 0 50px;
-      p {
-        margin: 0;
-        letter-spacing: 1px;
-      }
+      padding: 0 2vw;
+
       .deck {
         position: relative;
         .card1 {
@@ -231,13 +231,13 @@ h2 {
         }
         .card2 {
           position: absolute;
-          top: -2px;
-          left: -3px;
+          top: -0.1vw;
+          left: -0.15vw;
         }
         .card3 {
           position: absolute;
-          top: -4px;
-          left: -6px;
+          top: -0.2vw;
+          left: -0.3vw;
         }
       }
       .table-buttons {
@@ -245,11 +245,11 @@ h2 {
         height: 100%;
         align-items: center;
         a {
-          margin: 0 10px;
+          margin: 0 0.3vw;
           display: flex;
-          height: 120px;
+          height: 6vw;
           button {
-            width: 150px;
+            width: 7vw;
             height: 100%;
           }
         }
@@ -258,33 +258,30 @@ h2 {
   }
   .hit-stand-double-buttons {
     display:flex;
-    margin: 0 20px;
+    margin: 0 3vw;
     justify-content: center;
     flex-wrap: wrap;
 
     input {
-      margin: 15px;
+      margin: 1vw;
       width: 25%;
-      min-width: 180px;
-      
+      min-width: 10vw;
     }
   }
 
   .popup {
-    padding: 0 30px;
+    padding: 0 2vw;
     position: absolute;
-    border: 2px white solid;
-    border-radius: 10px;
+    border: 0.1vw white solid;
+    border-radius: 0.vw;
     align-items: center;
     text-align: center;
-    min-width: 300px;
-    width: 20%;
-    min-height: 300px;
+    min-width: 20vw;
+    min-height: 13vw;
     background-color: black;
-    font-size: 50px;
+    font-size: 3vw;
     button {
-      min-width: 150px;
-      margin: 10px;
+      margin: 1vw;
     }
   }
 }
@@ -292,9 +289,9 @@ h2 {
 //name input page styling
 .name-input {
   align-items: center;
-  width: 300px;
+  width: 20vw;
   input {
-    margin: 20px;
+    margin: 2vw;
     border: white solid 1px;
     text-align: start;
   }
@@ -303,26 +300,27 @@ h2 {
     display: flex;
     justify-content: space-around;
     button {
-      width: 140px;
+      width: 10vw;
+      margin: 0 1vw;
     }
   }
 }
 
 //rules, credits, saves pages styling
-.rules, .credits, .saves{
-  font-size: 2rem;
+.rules, .credits, .saves, .high-scores{
+  font-size: 1.5vw;
   align-items: center;
   button {
-    width: 140px;
+    width: 10vw;
   }
 }
 
 .high-scores {
   align-items: center;
   .high-score-list {
-    margin: 30px;
+    margin: 2vw;
     width: 60vw;
-    font-size: 50px;
+    font-size: 2vw;
     .high-score-list-item {
       display: flex;
       justify-content: space-between;
@@ -336,21 +334,23 @@ footer {
   width: 100%;
   text-align: center;
   bottom: 0;
-  padding: 20px;
+  padding: 1vw;
   background-color: black;
+  font-size: 1vw;
 }
 
 //round history page styling
 .round-history {
   align-items: center;
-  font-size: 25px;
+  font-size: 1.5vw;
   .round-history-list{
     margin: 20px;
     .round-history-list-item {
-      border: white solid 2px;
-      border-radius: 20px;
-      padding: 10px 30px;
-      margin: 5px 0;
+      border: white solid 0.1vw;
+      border-radius: 0.5vw;
+      min-width: 15vw;
+      padding: 1vw 3vw;
+      margin: 1vw 0;
       text-align: center;
       div{
         margin: 5px 0;
@@ -365,18 +365,19 @@ footer {
 
 .saves {
   .saves-list {
-    margin: 30px;
+    margin: 1vw;
     .save {
-      border: white solid 2px;
-      border-radius: 10px;
-      margin: 10px;
-      padding: 20px;
+      border: white solid 0.1vw;
+      border-radius: 0.5vw;
+      margin: 0.5vw;
+      padding: 1vw;
+      min-width: 30vw;
 
       display: flex;
       align-items: center;
       justify-content: space-between;
       div {
-        margin: 0 10px;
+        margin: 0 0.2vw;
       }
       .save-id {
         font-size: 300%;

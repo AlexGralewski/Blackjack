@@ -67,14 +67,14 @@ function BetSelection(props) {
             Quit
           </button>
         </Link>
-        <Link to="/game" style={bet > 0 && balance >= bet ? { display:"flex"} : { display:"none"}}>
-          <button onClick={confirmBet}>
-            Confirm
-          </button>
-        </Link>
         <Link to="/" onClick={() => saveGame()} style={roundCount > 1 ? { display: "flex" } : { display: "none" }}>
           <button>
             Save and Quit
+          </button>
+        </Link>
+        <Link to="/game" style={bet > 0 && balance >= bet ? { display:"flex"} : { display:"none"}}>
+          <button onClick={confirmBet}>
+            Confirm
           </button>
         </Link>
       </div>
