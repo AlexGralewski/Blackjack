@@ -8,32 +8,22 @@ function Menu(props) {
   return(
     <div className="menu">
       <div className="menu-title">Blackjack</div>
-      <Link to="/username" onClick={() => {resetGameState()}}>
-        <button className="menu-item new-game">
+      <Link to="/username" onClick={() => {resetGameState()}} className="menu-item">
           New Game
-        </button>
       </Link>
-      <Link to="/loadgame" onClick={() => {loadSaves()}}>
-        <button className="menu-item">
+      <Link to="/loadgame" onClick={() => {loadSaves()}} className="menu-item">
           Load Game
-        </button>
       </Link>
-      <Link to="/highscores" onClick={() => {loadScoreboard()}} >
-        <button className="menu-item">
+      <Link to="/highscores" onClick={() => {loadScoreboard()}} className="menu-item">
           High Scores
-        </button>
       </Link>
-      <Link to="/rules" >
-        <button className="menu-item">
+      <Link to="/rules" className="menu-item">
           Rules
-        </button>
       </Link>
-      <Link to="/credits" >
-        <button className="menu-item">
+      <Link to="/credits" className="menu-item">
           Credits
-        </button>
       </Link>
-      <button className="reset-game" onClick={() => {localStorage.clear()}}>
+      <button className="reset-game" onClick={() => {localStorage.clear()}} >
         Reset Game
       </button>
       <Footer />

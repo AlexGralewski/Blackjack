@@ -4,7 +4,7 @@ body, button, input {
 }
 
 //main styling of buttons
-button, input {
+button, input, .menu-item {
   background-color: black;
   color: white;
   border: 0.1vw white solid;
@@ -96,13 +96,15 @@ p, label {
     width: 50%;
   }
   .menu-item {
-    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 12vw;
     background: none;
     font-size: 1.8vw;
     margin: 0.4vw;
-    padding: 1.5rem;
     color: white;
-    height: 5vw;
+    height: 3vw;
   }
   .menu-item:hover {
     background-color: white;
@@ -273,7 +275,7 @@ p, label {
     padding: 0 2vw;
     position: absolute;
     border: 0.1vw white solid;
-    border-radius: 0.vw;
+    border-radius: 0.5vw;
     align-items: center;
     text-align: center;
     min-width: 20vw;
